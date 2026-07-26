@@ -22,9 +22,9 @@ function ZoomIcon(props: React.SVGProps<SVGSVGElement>) {
 
 const CERTS = [
   {
-    image: "/certs/crta.png",
-    width: 10737,
-    height: 7653,
+    image: "/certs/crta.webp",
+    width: 1600,
+    height: 1140,
     title: "Certified Red Team Analyst (CRTA)",
     issuer: "CyberWarfare Labs",
     date: "Jul 26, 2026",
@@ -32,7 +32,7 @@ const CERTS = [
     highlight: true,
   },
   {
-    image: "/certs/cert1.png",
+    image: "/certs/cert1.webp",
     width: 1117,
     height: 793,
     title: "Penetration Test Specialist",
@@ -42,7 +42,7 @@ const CERTS = [
     highlight: false,
   },
   {
-    image: "/certs/cert2.png",
+    image: "/certs/cert2.webp",
     width: 1050,
     height: 812,
     title: "Machine Learning for Natural Language Processing",
@@ -52,7 +52,7 @@ const CERTS = [
     highlight: false,
   },
   {
-    image: "/certs/cert3.png",
+    image: "/certs/cert3.webp",
     width: 1036,
     height: 804,
     title: "Generative AI Foundations",
@@ -62,7 +62,7 @@ const CERTS = [
     highlight: false,
   },
   {
-    image: "/certs/cert4.png",
+    image: "/certs/cert4.webp",
     width: 998,
     height: 725,
     title: "OCI 2025 Certified Generative AI Professional",
@@ -72,7 +72,7 @@ const CERTS = [
     highlight: false,
   },
   {
-    image: "/certs/cert5.png",
+    image: "/certs/cert5.webp",
     width: 1226,
     height: 830,
     title: "Ethical Hacker",

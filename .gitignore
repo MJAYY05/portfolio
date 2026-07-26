@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# original images before webp compression (scripts/compress-images.mjs)
+/image-backups
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -74,7 +74,7 @@ function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {
 
 const TRACK = {
   src: "/audio/song1.mp3",
-  cover: "/audio/song1.jpg",
+  cover: "/audio/song1.webp",
   title: "ถ้าฉันเป็นเขา",
   artist: "INDIGO",
 };

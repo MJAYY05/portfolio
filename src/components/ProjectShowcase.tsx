@@ -65,7 +65,7 @@ const PROJECTS = [
       fit: "cover" as const,
       items: [
         {
-          src: "/projects/project1.png",
+          src: "/projects/project1.webp",
           width: 882,
           height: 1010,
           alt: "VSEG Email Platform project — team photo, presentation, sign-up UI, Azure database, and deploy log",
@@ -103,13 +103,13 @@ const PROJECTS = [
       fit: "cover" as const,
       items: [
         {
-          src: "/projects/leo1.png",
+          src: "/projects/leo1.webp",
           width: 811,
           height: 883,
           alt: "Leo Auto inventory dashboard — parts catalog with stock levels and search",
         },
         {
-          src: "/projects/leo2.png",
+          src: "/projects/leo2.webp",
           width: 888,
           height: 867,
           alt: "Leo Auto analytics dashboard — AI Vision system effectiveness metrics",
@@ -177,7 +177,7 @@ const PROJECTS = [
     subtitle: "VSEG Teams — commissioned by SIAM AI Cloud",
     image: {
       fit: "contain" as const,
-      src: "/projects/siamai.png",
+      src: "/projects/siamai.webp",
       width: 905,
       height: 330,
       alt: "SIAM AI Cloud logo",

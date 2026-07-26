@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const IMAGES = [
-  { src: "/activity/itexpoday1.jpg", alt: "IT Expo Day" },
-  { src: "/activity/itexpoday2.jpg", alt: "IT Expo Day" },
-  { src: "/activity/itexpoday3.png", alt: "IT Expo Day" },
+  { src: "/activity/itexpoday1.webp", alt: "IT Expo Day" },
+  { src: "/activity/itexpoday2.webp", alt: "IT Expo Day" },
+  { src: "/activity/itexpoday3.webp", alt: "IT Expo Day" },
 ];
 
 const INTERVAL_MS = 4000;
