@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
+import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import MusicPlayer from "@/components/MusicPlayer";
 import Navbar from "@/components/Navbar";
@@ -43,6 +44,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <MusicPlayer />
+        <BackToTop />
       </body>
     </html>
   );

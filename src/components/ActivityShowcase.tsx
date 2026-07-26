@@ -4,7 +4,7 @@ const EN =
   "A truly inspiring experience — I got to see real projects from several teams applying AI to cybersecurity, and talked with professionals who were generous with their time and advice. It made me realize that what I'm studying is genuinely valuable and applicable in the real world. I came back with real motivation to keep pushing myself and grow even further.";
 
 const TH =
-  "ประทับใจมาก ได้เห็นทั้งโปรเจคจริงของหลายๆกลุ่ม ที่นำ AI มาใช้ใน Cybersecurity และได้คุยกับพี่ๆ ที่เปิดโอกาสและให้คำแนะนำดีมาก ทำให้รู้สึกว่าสิ่งที่เรียนอยู่มันมีคุณค่าและนำไปใช้ได้จริง กลับมาพร้อมแรงบันดาลใจที่อยากขวนขวายและพัฒนาตัวเองมากขึ้นกว่าเดิม";
+  "เป็นงานที่ประทับใจมาก ได้เห็นทั้งโปรเจคจริงของหลายๆกลุ่ม ที่นำ AI มาใช้ใน Cybersecurity และได้คุยกับพี่ๆ ที่เปิดโอกาสและให้คำแนะนำดีมาก ทำให้รู้สึกว่าสิ่งที่เรียนอยู่มันมีคุณค่าและนำไปใช้ได้จริง กลับมาพร้อมแรงบันดาลใจที่อยากขวนขวายและพัฒนาตัวเองมากขึ้นกว่าเดิม";
 
 export default function ActivityShowcase() {
   return (
