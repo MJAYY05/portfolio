@@ -8,6 +8,7 @@ import ProfileCarousel from "@/components/ProfileCarousel";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import SkillsList from "@/components/SkillsList";
 import SocialLinks from "@/components/SocialLinks";
+import TechnicalStack from "@/components/TechnicalStack";
 
 export default function Home() {
   return (
@@ -73,6 +74,11 @@ export default function Home() {
             Skills & Certificates
           </h2>
           <SkillsList />
+
+          <p className="mt-20 mb-8 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
+            Technical Stack
+          </p>
+          <TechnicalStack />
 
           <p className="mt-20 mb-8 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             Certificates
