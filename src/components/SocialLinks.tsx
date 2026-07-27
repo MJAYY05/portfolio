@@ -59,7 +59,7 @@ function PhoneIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-const SOCIALS = [
+export const SOCIALS = [
   {
     label: "LinkedIn",
     icon: LinkedInIcon,
