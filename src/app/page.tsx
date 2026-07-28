@@ -2,6 +2,7 @@ import AboutText from "@/components/AboutText";
 import ActivityShowcase from "@/components/ActivityShowcase";
 import BibleVerse from "@/components/BibleVerse";
 import CertificatesGrid from "@/components/CertificatesGrid";
+import ContactCTA from "@/components/ContactCTA";
 import EducationTimeline from "@/components/EducationTimeline";
 import NameHover from "@/components/NameHover";
 import ProfileCarousel from "@/components/ProfileCarousel";
@@ -114,6 +115,21 @@ export default function Home() {
             Activity
           </h2>
           <ActivityShowcase />
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+      >
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
+            06
+          </p>
+          <p className="mb-12 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
+            Contact
+          </p>
+          <ContactCTA />
         </div>
       </section>
     </main>

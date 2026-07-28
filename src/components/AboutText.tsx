@@ -1,10 +1,10 @@
 const EN = `Hello, my name is Mac. I'm a fourth-year Computer Science student at Bangkok University's School of Information Technology and Innovation, where I focus on Data Science and Cybersecurity.
 
-I'm currently looking for a cooperative education placement, the chance to work alongside an experienced team is what I want most at this stage, and it's the step I think will shape my career the most. Outside of coursework I'm continuously building my technical skills, and I'm preparing for the CompTIA Security+ certification. My main interests are SOC operations, penetration testing, and cyber threat analysis, and I plan to build my career in this field long term.`;
+I'm currently looking for a cooperative education placement, the chance to work alongside an experienced team is what I want most at this stage, and it's the step I think will shape my career the most. Outside of coursework I'm continuously building my technical skills, and I'm preparing for the CompTIA Security+ certification. My main career interests are working as a SOC Analyst, Penetration Tester, and in broader Blue Team roles, and I plan to build my career in cybersecurity long term.`;
 
 const TH = `สวัสดีครับ ผมชื่อแม็ก ปัจจุบันเป็นนักศึกษาชั้นปีที่ 4 สาขาวิทยาการคอมพิวเตอร์ คณะเทคโนโลยีสารสนเทศและนวัตกรรม มหาวิทยาลัยกรุงเทพ โดยมุ่งเน้นด้านวิทยาการข้อมูลและความมั่นคงปลอดภัยไซเบอร์ครับ
 
-ตอนนี้ผมกำลังมองหาโอกาสฝึกงานสหกิจศึกษา สิ่งที่ผมต้องการมากที่สุดในช่วงนี้คือการได้ทำงานร่วมกับทีมที่มีประสบการณ์จริง เพราะผมเชื่อว่านี่คือก้าวที่จะกำหนดทิศทางอาชีพของผมมากที่สุด นอกเหนือจากการเรียนในห้องเรียน ผมพัฒนาทักษะทางเทคนิคของตัวเองอย่างต่อเนื่อง และปัจจุบันกำลังเตรียมสอบใบรับรอง CompTIA Security+ ครับ ผมสนใจงานด้าน SOC Operations, Penetration Testing และ Cyber Threat Analysis เป็นพิเศษ และตั้งใจจะเติบโตในสายงานนี้ในระยะยาวครับ`;
+ตอนนี้ผมกำลังมองหาโอกาสฝึกงานสหกิจศึกษา สิ่งที่ผมต้องการมากที่สุดในช่วงนี้คือการได้ทำงานร่วมกับทีมที่มีประสบการณ์จริง เพราะผมเชื่อว่านี่คือก้าวที่จะกำหนดทิศทางอาชีพของผมมากที่สุด นอกเหนือจากการเรียนในห้องเรียน ผมพัฒนาทักษะทางเทคนิคของตัวเองอย่างต่อเนื่อง และปัจจุบันกำลังเตรียมสอบใบรับรอง CompTIA Security+ ครับ ผมสนใจสายงาน SOC Analyst, Penetration Tester และงานฝั่ง Blue Team เป็นพิเศษ และตั้งใจจะเติบโตในสายงานความมั่นคงปลอดภัยไซเบอร์ในระยะยาวครับ`;
 
 export default function AboutText() {
   return (

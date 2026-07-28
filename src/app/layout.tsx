@@ -5,6 +5,7 @@ import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import MusicPlayer from "@/components/MusicPlayer";
 import Navbar from "@/components/Navbar";
+import PortfolioHUD from "@/components/PortfolioHUD";
 import SiteBackground from "@/components/SiteBackground";
 
 const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-black text-white">
         <SiteBackground />
+        <PortfolioHUD />
         <Navbar />
         {children}
         <Footer />
