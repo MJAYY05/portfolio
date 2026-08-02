@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Re-derives the IT Expo Day activity photos from their backed-up originals,
+ * Re-derives activity photos from their backed-up originals,
  * fixing two issues from the earlier compress-images.mjs pass:
  *   1. EXIF orientation was not applied before resizing, so the two camera
  *      photos (shot in portrait, stored rotated) got baked in sideways.
@@ -19,7 +19,14 @@ const OUT_DIR = path.join(ROOT, "public", "activity");
 const MAX_WIDTH = 2000;
 const QUALITY = 92;
 
-const FILES = ["itexpoday1.jpg", "itexpoday2.jpg", "itexpoday3.png"];
+const FILES = [
+  "itexpoday1.jpg",
+  "itexpoday2.jpg",
+  "itexpoday3.png",
+  "reru1.jpg",
+  "reru2.jpg",
+  "reru3.jpg",
+];
 
 function formatBytes(bytes) {
   return `${(bytes / 1024).toFixed(1)} KB`;
@@ -33,10 +40,12 @@ async function main() {
 
     const before = (await fs.stat(src)).size;
 
+    const quality = name.startsWith("reru") ? 82 : QUALITY;
+
     await sharp(src)
       .rotate() // auto-orient using EXIF, then bake it into the pixels
       .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-      .webp({ quality: QUALITY })
+      .webp({ quality })
       .toFile(out);
 
     const meta = await sharp(out).metadata();
