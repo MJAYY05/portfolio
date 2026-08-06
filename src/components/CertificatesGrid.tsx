@@ -20,7 +20,19 @@ function ZoomIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-const CERTS = [
+type Certificate = {
+  image: string;
+  width: number;
+  height: number;
+  title: string;
+  issuer: string;
+  date: string;
+  meta?: string;
+  highlight?: boolean;
+  wide?: boolean;
+};
+
+const CERTS: Certificate[] = [
   {
     image: "/certs/crta.webp",
     width: 1600,
@@ -83,7 +95,21 @@ const CERTS = [
   },
 ];
 
-function CertCard({ cert }: { cert: (typeof CERTS)[number] }) {
+const COMPETITION_CERTS: Certificate[] = [
+  {
+    image: "/certs/itctf_cer.jpg",
+    width: 1600,
+    height: 900,
+    title: "IT RERU Cyber Hackathon 2026 #2",
+    issuer: "Roi Et Rajabhat University",
+    date: "Jul 31, 2026",
+    meta: "Senior Level · Capture The Flag",
+    highlight: false,
+    wide: true,
+  },
+];
+
+function CertCard({ cert }: { cert: Certificate }) {
   const card = (
     <ImageLightbox
       src={cert.image}
@@ -96,7 +122,9 @@ function CertCard({ cert }: { cert: (typeof CERTS)[number] }) {
           : "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left transition-colors duration-300 hover:border-white/30"
       }
     >
-      <div className="relative aspect-3/2 overflow-hidden">
+      <div
+        className={`relative overflow-hidden ${cert.wide ? "aspect-16/9" : "aspect-3/2"}`}
+      >
         <Image
           src={cert.image}
           alt={cert.title}
@@ -139,10 +167,34 @@ function CertCard({ cert }: { cert: (typeof CERTS)[number] }) {
 
 export default function CertificatesGrid() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {CERTS.map((cert) => (
-        <CertCard key={cert.image} cert={cert} />
-      ))}
+    <div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {CERTS.map((cert) => (
+          <CertCard key={cert.image} cert={cert} />
+        ))}
+      </div>
+
+      <div className="mt-20">
+        <div className="mb-8 flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="mb-2 text-[10px] font-medium tracking-[0.28em] text-zinc-500 uppercase">
+              Certificates / 02
+            </p>
+            <h3 className="font-kanit text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+              Competition &amp; Activity
+            </h3>
+          </div>
+          <p className="text-[10px] tracking-[0.22em] text-zinc-600 uppercase">
+            01 Certificate
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {COMPETITION_CERTS.map((cert) => (
+            <CertCard key={cert.image} cert={cert} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
