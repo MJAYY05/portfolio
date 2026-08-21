@@ -32,6 +32,9 @@ export default function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
+    window.dispatchEvent(
+      new CustomEvent("portfolio:hero-view", { detail: "profile" }),
+    );
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

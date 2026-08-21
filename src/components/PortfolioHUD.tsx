@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 const SECTIONS = [
-  { id: "hero", number: "01", label: "Home" },
-  { id: "about", number: "02", label: "About" },
-  { id: "skills", number: "03", label: "Skills" },
-  { id: "project", number: "04", label: "Projects" },
-  { id: "activity", number: "05", label: "Activity" },
-  { id: "contact", number: "06", label: "Contact" },
+  { id: "hero", number: "01", label: "Home / About" },
+  { id: "skills", number: "02", label: "Skills" },
+  { id: "project", number: "03", label: "Projects" },
+  { id: "activity", number: "04", label: "Activity" },
+  { id: "contact", number: "05", label: "Contact" },
 ];
 
 export default function PortfolioHUD() {
@@ -125,7 +124,7 @@ export default function PortfolioHUD() {
         className="site-chrome fixed top-1/2 right-5 z-40 hidden -translate-y-1/2 lg:block xl:right-8"
       >
         <p className="mb-5 text-right font-mono text-[9px] tracking-[0.24em] text-zinc-600 uppercase">
-          Route // 06
+          Route // 05
         </p>
 
         <div className="relative">
