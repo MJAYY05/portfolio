@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type { SVGProps } from "react";
+import { useRef, useState, type KeyboardEvent, type SVGProps } from "react";
 import ImageLightbox from "@/components/ImageLightbox";
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -50,6 +52,38 @@ function ZoomIcon(props: SVGProps<SVGSVGElement>) {
       <line x1="21" y1="21" x2="16.65" y2="16.65" />
       <line x1="11" y1="8" x2="11" y2="14" />
       <line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  );
+}
+
+function ArrowLeftIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+  );
+}
+
+function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m9 18 6-6-6-6" />
     </svg>
   );
 }
@@ -216,25 +250,204 @@ const PROJECTS = [
   },
 ];
 
-export default function ProjectShowcase() {
+type Project = (typeof PROJECTS)[number];
+
+function ProjectPreviewCard({
+  project,
+  side,
+  onClick,
+}: {
+  project: Project;
+  side: "left" | "right";
+  onClick: () => void;
+}) {
   return (
-    <div className="flex flex-col gap-24">
-      {PROJECTS.map((project, i) => (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`${side === "left" ? "Previous" : "Next"} project: ${project.title}`}
+      className={`project-preview project-preview-${side} group absolute top-1/2 z-0 hidden aspect-4/3 w-[29%] overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950 text-left shadow-2xl lg:block`}
+    >
+      {project.image.fit === "video" ? (
+        <video
+          src={project.image.src}
+          muted
+          loop
+          autoPlay
+          playsInline
+          className="h-full w-full object-cover grayscale transition duration-700 group-hover:grayscale-0"
+        />
+      ) : project.image.fit === "cover" ? (
+        <Image
+          src={project.image.items[0].src}
+          alt=""
+          fill
+          sizes="28vw"
+          className="object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+        />
+      ) : (
+        <Image
+          src={project.image.src}
+          alt=""
+          fill
+          sizes="28vw"
+          className="bg-zinc-950 object-contain p-7 grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+        />
+      )}
+      <span className="absolute inset-0 bg-black/55 transition-colors duration-500 group-hover:bg-black/25" />
+      <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black via-black/60 to-transparent px-5 pt-12 pb-5">
+        <span className="mb-1 block font-mono text-[8px] tracking-[0.22em] text-zinc-500 uppercase">
+          {side === "left" ? "Previous" : "Next"}
+        </span>
+        <span className="font-kanit block truncate text-sm font-medium text-white/75">
+          {project.title}
+        </span>
+      </span>
+    </button>
+  );
+}
+
+export default function ProjectShowcase() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState<"next" | "previous">("next");
+  const [transitionKey, setTransitionKey] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const project = PROJECTS[activeIndex];
+  const previousProject =
+    PROJECTS[(activeIndex - 1 + PROJECTS.length) % PROJECTS.length];
+  const nextProject = PROJECTS[(activeIndex + 1) % PROJECTS.length];
+
+  const showProject = (index: number, nextDirection: "next" | "previous") => {
+    const normalized = (index + PROJECTS.length) % PROJECTS.length;
+    if (normalized === activeIndex) return;
+    setDirection(nextDirection);
+    setActiveIndex(normalized);
+    setTransitionKey((current) => current + 1);
+  };
+
+  const previous = () => showProject(activeIndex - 1, "previous");
+  const next = () => showProject(activeIndex + 1, "next");
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      previous();
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      next();
+    }
+  };
+
+  return (
+    <div
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured projects"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      onTouchStart={(event) => {
+        touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(event) => {
+        if (touchStartX.current === null) return;
+        const endX = event.changedTouches[0]?.clientX ?? touchStartX.current;
+        const distance = touchStartX.current - endX;
+        touchStartX.current = null;
+        if (Math.abs(distance) < 55) return;
+        if (distance > 0) next();
+        else previous();
+      }}
+      className="project-carousel focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+    >
+      <div className="flex flex-col gap-6 px-1 py-5 sm:px-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-center gap-4">
+          <p
+            aria-live="polite"
+            className="font-mono text-xs tracking-[0.24em] text-zinc-400"
+          >
+            <span className="text-white">
+              {String(activeIndex + 1).padStart(2, "0")}
+            </span>
+            <span className="mx-2 text-zinc-700">/</span>
+            {String(PROJECTS.length).padStart(2, "0")}
+          </p>
+          <span className="h-px w-10 bg-white/15" />
+          <p className="max-w-55 truncate text-[10px] font-medium tracking-[0.2em] text-zinc-500 uppercase sm:max-w-none">
+            {project.title}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between gap-5 lg:justify-end">
+          <div className="flex items-center gap-2" aria-label="Choose project">
+            {PROJECTS.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() =>
+                  showProject(index, index > activeIndex ? "next" : "previous")
+                }
+                aria-label={`Show project ${index + 1}: ${item.title}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+                className={`relative h-1 overflow-hidden rounded-full transition-all duration-500 ${
+                  index === activeIndex
+                    ? "w-12 bg-white/20"
+                    : "w-5 bg-white/10 hover:bg-white/30"
+                }`}
+              >
+                {index === activeIndex && (
+                  <span className="absolute inset-y-0 left-0 w-full origin-left animate-[project-progress_650ms_cubic-bezier(0.16,1,0.3,1)_both] bg-white" />
+                )}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={previous}
+              aria-label="Previous project"
+              className="project-arrow group flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.025] text-zinc-300 transition-all duration-300 hover:border-white/40 hover:bg-white hover:text-black active:scale-95"
+            >
+              <ArrowLeftIcon className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next project"
+              className="project-arrow group flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.025] text-zinc-300 transition-all duration-300 hover:border-white/40 hover:bg-white hover:text-black active:scale-95"
+            >
+              <ArrowRightIcon className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="project-stage relative overflow-hidden px-1 py-10 sm:px-3 sm:py-12 lg:px-0 lg:py-20">
+        <ProjectPreviewCard
+          project={previousProject}
+          side="left"
+          onClick={previous}
+        />
+        <ProjectPreviewCard project={nextProject} side="right" onClick={next} />
+
+        <div aria-hidden className="project-pedestal" />
         <div
-          key={project.id}
-          className={
-            i > 0
-              ? "grid items-start gap-12 border-t border-white/10 pt-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"
-              : "grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"
-          }
+          key={`${project.id}-${transitionKey}`}
+          aria-label={`${project.title}, project ${activeIndex + 1} of ${PROJECTS.length}`}
+          className={`project-slide relative z-10 mx-auto grid w-full items-start gap-10 lg:w-[82%] lg:grid-cols-[1.16fr_0.84fr] lg:gap-14 ${
+            direction === "next"
+              ? "project-slide-next"
+              : "project-slide-previous"
+          }`}
         >
-          <div className="relative">
+          <div className="relative drop-shadow-[0_35px_70px_rgba(0,0,0,0.65)]">
             <div
               aria-hidden
               className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-linear-to-br from-white/15 via-transparent to-white/5 blur-2xl"
             />
             {project.image.fit === "video" ? (
-              <div className="overflow-hidden rounded-3xl border border-white/15">
+              <div className="aspect-4/3 overflow-hidden rounded-2xl border border-white/15 bg-black">
                 <video
                   src={project.image.src}
                   aria-label={project.image.alt}
@@ -242,11 +455,17 @@ export default function ProjectShowcase() {
                   muted
                   loop
                   playsInline
-                  className="h-auto w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             ) : project.image.fit === "cover" ? (
-              <div className="flex flex-col gap-4">
+              <div
+                className={`grid aspect-4/3 overflow-hidden rounded-2xl ${
+                  project.image.items.length > 1
+                    ? "grid-cols-2 gap-1.5"
+                    : "grid-cols-1"
+                }`}
+              >
                 {project.image.items.map((img) => (
                   <ImageLightbox
                     key={img.src}
@@ -254,14 +473,13 @@ export default function ProjectShowcase() {
                     alt={img.alt}
                     width={img.width}
                     height={img.height}
-                    triggerClassName="group relative block w-full cursor-zoom-in overflow-hidden rounded-3xl border border-white/15 text-left"
+                    triggerClassName="group relative block h-full w-full cursor-zoom-in overflow-hidden border border-white/15 text-left first:rounded-l-2xl last:rounded-r-2xl"
                   >
                     <Image
                       src={img.src}
                       alt={img.alt}
-                      width={img.width}
-                      height={img.height}
-                      className="h-auto w-full object-cover"
+                      fill
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                       sizes="(min-width: 1024px) 40vw, 90vw"
                     />
                     <span className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100">
@@ -276,7 +494,7 @@ export default function ProjectShowcase() {
                 alt={project.image.alt}
                 width={project.image.width}
                 height={project.image.height}
-                triggerClassName="group relative flex aspect-4/5 w-full cursor-zoom-in flex-col items-center justify-center gap-5 overflow-hidden rounded-3xl border border-white/15 bg-white/[0.03] p-10 text-center sm:aspect-3/4"
+                triggerClassName="group relative flex aspect-4/3 w-full cursor-zoom-in flex-col items-center justify-center gap-5 overflow-hidden rounded-2xl border border-white/15 bg-white/[0.03] p-10 text-center"
               >
                 <Image
                   src={project.image.src}
@@ -297,7 +515,7 @@ export default function ProjectShowcase() {
             )}
           </div>
 
-          <div className="flex flex-col gap-10">
+          <div className="project-details flex flex-col gap-9 lg:max-h-[min(72vh,720px)] lg:overflow-y-auto lg:pr-3">
             <div>
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
                 {project.tag}
@@ -376,7 +594,12 @@ export default function ProjectShowcase() {
             )}
           </div>
         </div>
-      ))}
+      </div>
+
+      <div className="flex items-center justify-between px-1 py-4 font-mono text-[9px] tracking-[0.2em] text-zinc-600 uppercase sm:px-3">
+        <span>Use arrows or swipe</span>
+        <span>Projects / Selected works</span>
+      </div>
     </div>
   );
 }

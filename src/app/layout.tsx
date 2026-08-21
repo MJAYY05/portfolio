@@ -4,6 +4,7 @@ import "./globals.css";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import MusicPlayer from "@/components/MusicPlayer";
+import MotionExperience from "@/components/MotionExperience";
 import Navbar from "@/components/Navbar";
 import PortfolioHUD from "@/components/PortfolioHUD";
 import SiteBackground from "@/components/SiteBackground";
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black text-white">
+        <MotionExperience />
         <SiteBackground />
         <PortfolioHUD />
         <Navbar />

@@ -122,7 +122,7 @@ export default function PortfolioHUD() {
 
       <nav
         aria-label="Section progress"
-        className="fixed top-1/2 right-5 z-40 hidden -translate-y-1/2 lg:block xl:right-8"
+        className="site-chrome fixed top-1/2 right-5 z-40 hidden -translate-y-1/2 lg:block xl:right-8"
       >
         <p className="mb-5 text-right font-mono text-[9px] tracking-[0.24em] text-zinc-600 uppercase">
           Route // 06

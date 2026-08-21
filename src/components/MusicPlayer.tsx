@@ -117,7 +117,7 @@ export default function MusicPlayer() {
   };
 
   return (
-    <div className="fixed right-6 bottom-6 z-50">
+    <div className="site-chrome fixed right-6 bottom-6 z-50">
       <audio
         ref={audioRef}
         src={TRACK.src}

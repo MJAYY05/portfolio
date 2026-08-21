@@ -1,0 +1,217 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+const INTRO_DURATION = 1850;
+const EXIT_DURATION = 850;
+
+type TrailPoint = {
+  x: number;
+  y: number;
+  life: number;
+};
+
+export default function MotionExperience() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [introVisible, setIntroVisible] = useState(true);
+  const [introLeaving, setIntroLeaving] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    root.classList.add("motion-enabled");
+    document.body.style.overflow = "hidden";
+
+    const revealTargets = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+    );
+
+    revealTargets.forEach((target) => observer.observe(target));
+
+    const startExit = window.setTimeout(
+      () => {
+        setIntroLeaving(true);
+        root.classList.add("site-ready");
+        document.body.style.overflow = "";
+      },
+      reducedMotion ? 120 : INTRO_DURATION,
+    );
+
+    const removeIntro = window.setTimeout(
+      () => setIntroVisible(false),
+      reducedMotion ? 220 : INTRO_DURATION + EXIT_DURATION,
+    );
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(startExit);
+      window.clearTimeout(removeIntro);
+      root.classList.remove("motion-enabled", "site-ready");
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const finePointer = window.matchMedia("(any-pointer: fine)").matches;
+    if (reducedMotion || !finePointer) return;
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    let frame = 0;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let targetX = -100;
+    let targetY = -100;
+    let headX = -100;
+    let headY = -100;
+    let active = false;
+    let lastMove = 0;
+    const points: TrailPoint[] = [];
+
+    const resize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
+      targetX = event.clientX;
+      targetY = event.clientY;
+      if (!active) {
+        headX = targetX;
+        headY = targetY;
+      }
+      active = true;
+      lastMove = performance.now();
+    };
+
+    const onPointerLeave = () => {
+      active = false;
+    };
+
+    const draw = (time: number) => {
+      context.clearRect(0, 0, width, height);
+
+      if (active) {
+        headX += (targetX - headX) * 0.34;
+        headY += (targetY - headY) * 0.34;
+        const previous = points[0];
+        const distance = previous
+          ? Math.hypot(headX - previous.x, headY - previous.y)
+          : 99;
+
+        if (distance > 1.25) {
+          points.unshift({ x: headX, y: headY, life: 1 });
+        }
+
+        if (time - lastMove > 80) active = false;
+      }
+
+      for (const point of points) point.life -= 0.045;
+      while (points.length > 0 && points[points.length - 1].life <= 0) {
+        points.pop();
+      }
+      if (points.length > 32) points.length = 32;
+
+      if (points.length > 2) {
+        context.save();
+        context.lineCap = "round";
+        context.lineJoin = "round";
+        context.shadowColor = "rgba(255,255,255,0.5)";
+        context.shadowBlur = 9;
+
+        for (let index = 0; index < points.length - 2; index += 1) {
+          const current = points[index];
+          const next = points[index + 1];
+          const after = points[index + 2];
+          const opacity = Math.max(0, current.life) * (1 - index / points.length);
+
+          context.beginPath();
+          context.moveTo(current.x, current.y);
+          context.quadraticCurveTo(
+            next.x,
+            next.y,
+            (next.x + after.x) / 2,
+            (next.y + after.y) / 2,
+          );
+          context.strokeStyle = `rgba(255,255,255,${opacity * 0.72})`;
+          context.lineWidth = Math.max(0.35, 2.25 * opacity);
+          context.stroke();
+        }
+        context.restore();
+      }
+
+      frame = requestAnimationFrame(draw);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onPointerLeave);
+    frame = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener("mouseleave", onPointerLeave);
+    };
+  }, []);
+
+  return (
+    <>
+      {introVisible && (
+        <div
+          aria-hidden
+          className={`intro-screen ${introLeaving ? "is-leaving" : ""}`}
+        >
+          <div className="intro-orbit" />
+          <div className="intro-content">
+            <div className="intro-monogram">TJ</div>
+            <p className="intro-label">Thanakorn Jamnongprakhon</p>
+            <div className="intro-track">
+              <span className="intro-progress" />
+            </div>
+            <div className="intro-meta">
+              <span>Portfolio / 2026</span>
+              <span>Bangkok, TH</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <canvas
+        ref={canvasRef}
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[90] hidden mix-blend-difference md:block"
+      />
+    </>
+  );
+}

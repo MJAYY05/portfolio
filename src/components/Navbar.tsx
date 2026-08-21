@@ -7,20 +7,24 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-10 lg:px-16">
+    <header className="site-navbar fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-black/55 px-5 py-3 shadow-[0_12px_50px_rgba(0,0,0,0.35)] backdrop-blur-2xl sm:px-7">
         <a
           href="#top"
-          className="font-kanit text-sm font-semibold tracking-[0.35em] text-white"
+          className="group flex items-center gap-3 font-kanit text-xs font-semibold tracking-[0.3em] text-white sm:text-sm"
         >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inset-0 animate-ping rounded-full bg-white/40" />
+            <span className="relative h-2 w-2 rounded-full bg-white" />
+          </span>
           PORTFOLIO
         </a>
-        <ul className="flex items-center gap-5 text-[11px] font-medium uppercase tracking-widest text-zinc-400 sm:gap-10 sm:text-xs">
+        <ul className="flex items-center gap-3 text-[9px] font-medium uppercase tracking-widest text-zinc-400 sm:gap-8 sm:text-[11px]">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="relative text-white/70 transition-colors hover:text-white"
+                className="nav-link relative block px-1 py-1.5 text-white/60 transition-colors duration-300 hover:text-white"
               >
                 <span className="sm:hidden">{link.short}</span>
                 <span className="hidden sm:inline">{link.full}</span>

@@ -16,21 +16,23 @@ export default function Home() {
     <main id="top" className="flex-1 text-white">
       <section
         id="hero"
-        className="relative flex min-h-screen scroll-mt-24 flex-col justify-center px-6 pt-32 pb-20 sm:px-10 lg:px-16"
+        data-section="01"
+        className="hero-section relative flex min-h-screen scroll-mt-24 flex-col justify-center overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-16"
       >
+        <div aria-hidden className="hero-halo" />
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 md:grid-cols-2">
-          <div className="flex flex-col gap-10">
-            <div>
+          <div className="hero-copy flex flex-col gap-10">
+            <div data-enter="1">
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
                 Portfolio
               </p>
               <NameHover />
             </div>
-            <BibleVerse />
-            <SocialLinks />
+            <div data-enter="2"><BibleVerse /></div>
+            <div data-enter="3"><SocialLinks /></div>
           </div>
 
-          <div className="flex justify-center md:justify-end">
+          <div data-enter="4" className="hero-profile flex justify-center md:justify-end">
             <div className="relative">
               <div
                 aria-hidden
@@ -46,9 +48,10 @@ export default function Home() {
 
       <section
         id="about"
-        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+        data-section="02"
+        className="content-section scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
       >
-        <div className="mx-auto max-w-6xl">
+        <div data-reveal className="section-inner mx-auto max-w-6xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             02
           </p>
@@ -65,9 +68,10 @@ export default function Home() {
 
       <section
         id="skills"
-        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+        data-section="03"
+        className="content-section scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
       >
-        <div className="mx-auto max-w-6xl">
+        <div data-reveal className="section-inner mx-auto max-w-6xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             03
           </p>
@@ -90,9 +94,10 @@ export default function Home() {
 
       <section
         id="project"
-        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+        data-section="04"
+        className="content-section scroll-mt-24 border-t border-white/10 px-4 py-32 sm:px-8 lg:px-10 xl:px-12"
       >
-        <div className="mx-auto max-w-6xl">
+        <div data-reveal className="section-inner mx-auto max-w-[1500px]">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             04
           </p>
@@ -105,9 +110,10 @@ export default function Home() {
 
       <section
         id="activity"
-        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+        data-section="05"
+        className="content-section scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
       >
-        <div className="mx-auto max-w-6xl">
+        <div data-reveal className="section-inner mx-auto max-w-6xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             05
           </p>
@@ -120,9 +126,10 @@ export default function Home() {
 
       <section
         id="contact"
-        className="scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
+        data-section="06"
+        className="content-section scroll-mt-24 border-t border-white/10 px-6 py-32 sm:px-10 lg:px-16"
       >
-        <div className="mx-auto max-w-6xl">
+        <div data-reveal className="section-inner mx-auto max-w-6xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.4em] text-zinc-500">
             06
           </p>
