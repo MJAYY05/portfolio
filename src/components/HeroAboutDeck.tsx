@@ -182,11 +182,6 @@ export default function HeroAboutDeck() {
         </div>
       </div>
 
-      {view === "about" && (
-        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[8px] tracking-[0.24em] text-zinc-600 uppercase sm:text-[9px]">
-          Swipe right to return
-        </p>
-      )}
     </section>
   );
 }
