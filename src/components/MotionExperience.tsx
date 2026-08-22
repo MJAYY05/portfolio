@@ -13,6 +13,7 @@ type TrailPoint = {
 
 export default function MotionExperience() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const introCursorRef = useRef<HTMLDivElement>(null);
   const [introVisible, setIntroVisible] = useState(true);
   const [introLeaving, setIntroLeaving] = useState(false);
 
@@ -83,6 +84,31 @@ export default function MotionExperience() {
     document.body.style.overflow = "";
     window.setTimeout(() => setIntroVisible(false), EXIT_DURATION);
   };
+
+  useEffect(() => {
+    if (!introVisible) return;
+
+    const cursor = introCursorRef.current;
+    if (!cursor || !window.matchMedia("(any-pointer: fine)").matches) return;
+
+    const moveCursor = (event: PointerEvent) => {
+      if (event.pointerType === "touch") return;
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      cursor.style.opacity = "1";
+    };
+
+    const hideCursor = () => {
+      cursor.style.opacity = "0";
+    };
+
+    window.addEventListener("pointermove", moveCursor, { passive: true });
+    document.documentElement.addEventListener("mouseleave", hideCursor);
+
+    return () => {
+      window.removeEventListener("pointermove", moveCursor);
+      document.documentElement.removeEventListener("mouseleave", hideCursor);
+    };
+  }, [introVisible]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -235,8 +261,17 @@ export default function MotionExperience() {
           </blockquote>
 
           <p className="intro-skip" aria-hidden>
-            Click or press Enter to continue
+            Press Enter to continue
           </p>
+
+          <div ref={introCursorRef} className="intro-cursor" aria-hidden>
+            <span className="intro-cursor-dot" />
+            <span className="intro-cursor-label">Click to enter</span>
+          </div>
+
+          <div className="intro-loading" aria-hidden>
+            <span className="intro-loading-bar" />
+          </div>
         </div>
       )}
 
