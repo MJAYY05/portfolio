@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Kanit } from "next/font/google";
+import { Cinzel, Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
@@ -25,6 +25,12 @@ const kanit = Kanit({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "Thanakorn Jamnongprakhon | Portfolio",
   description: "Portfolio of Thanakorn Jamnongprakhon (ธนกร จำนงประโคน)",
@@ -38,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} ${cinzel.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black text-white">
         <MotionExperience />

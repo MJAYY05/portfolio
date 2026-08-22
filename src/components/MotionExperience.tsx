@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const INTRO_DURATION = 1850;
-const EXIT_DURATION = 850;
+const INTRO_DURATION = 6200;
+const EXIT_DURATION = 1100;
 
 type TrailPoint = {
   x: number;
@@ -48,22 +48,41 @@ export default function MotionExperience() {
         root.classList.add("site-ready");
         document.body.style.overflow = "";
       },
-      reducedMotion ? 120 : INTRO_DURATION,
+      reducedMotion ? 3200 : INTRO_DURATION,
     );
 
     const removeIntro = window.setTimeout(
       () => setIntroVisible(false),
-      reducedMotion ? 220 : INTRO_DURATION + EXIT_DURATION,
+      reducedMotion ? 3300 : INTRO_DURATION + EXIT_DURATION,
     );
+
+    const skipIntro = (event: KeyboardEvent) => {
+      if (!["Enter", " ", "Escape"].includes(event.key)) return;
+      setIntroLeaving(true);
+      root.classList.add("site-ready");
+      document.body.style.overflow = "";
+      window.setTimeout(() => setIntroVisible(false), EXIT_DURATION);
+    };
+
+    window.addEventListener("keydown", skipIntro);
 
     return () => {
       observer.disconnect();
       window.clearTimeout(startExit);
       window.clearTimeout(removeIntro);
+      window.removeEventListener("keydown", skipIntro);
       root.classList.remove("motion-enabled", "site-ready");
       document.body.style.overflow = "";
     };
   }, []);
+
+  const dismissIntro = () => {
+    if (introLeaving) return;
+    setIntroLeaving(true);
+    document.documentElement.classList.add("site-ready");
+    document.body.style.overflow = "";
+    window.setTimeout(() => setIntroVisible(false), EXIT_DURATION);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -189,21 +208,35 @@ export default function MotionExperience() {
     <>
       {introVisible && (
         <div
-          aria-hidden
+          role="dialog"
+          aria-label="Opening verse"
+          aria-modal="true"
           className={`intro-screen ${introLeaving ? "is-leaving" : ""}`}
+          onPointerDown={dismissIntro}
         >
-          <div className="intro-orbit" />
-          <div className="intro-content">
-            <div className="intro-monogram">TJ</div>
-            <p className="intro-label">Thanakorn Jamnongprakhon</p>
-            <div className="intro-track">
-              <span className="intro-progress" />
-            </div>
-            <div className="intro-meta">
-              <span>Portfolio / 2026</span>
-              <span>Bangkok, TH</span>
-            </div>
+          <div className="intro-art" aria-hidden />
+          <div className="intro-shade" aria-hidden />
+          <div className="intro-light" aria-hidden />
+          <div className="intro-fog intro-fog-one" aria-hidden />
+          <div className="intro-fog intro-fog-two" aria-hidden />
+          <div className="intro-grain" aria-hidden />
+
+          <div className="intro-index" aria-hidden>
+            <span>PSALM</span>
+            <span>034</span>
           </div>
+
+          <blockquote className="intro-verse">
+            <p>
+              The Lord is close to the brokenhearted and saves those who are
+              crushed in spirit.
+            </p>
+            <footer>Psalm 34:18</footer>
+          </blockquote>
+
+          <p className="intro-skip" aria-hidden>
+            Click or press Enter to continue
+          </p>
         </div>
       )}
 
