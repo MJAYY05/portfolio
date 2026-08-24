@@ -28,7 +28,7 @@ type Certificate = {
   issuer: string;
   date: string;
   meta?: string;
-  highlight?: boolean;
+  accent?: "red" | "green";
   wide?: boolean;
 };
 
@@ -41,7 +41,7 @@ const CERTS: Certificate[] = [
     issuer: "CyberWarfare Labs",
     date: "Jul 26, 2026",
     meta: undefined as string | undefined,
-    highlight: true,
+    accent: "red",
   },
   {
     image: "/certs/cert1.webp",
@@ -51,7 +51,6 @@ const CERTS: Certificate[] = [
     issuer: "National Cyber Security Agency (NCSA)",
     date: "May 8, 2026",
     meta: "28-hour e-Learning course",
-    highlight: false,
   },
   {
     image: "/certs/cert2.webp",
@@ -61,7 +60,6 @@ const CERTS: Certificate[] = [
     issuer: "AWS Academy Graduate",
     date: "May 12, 2026",
     meta: "20 hours",
-    highlight: false,
   },
   {
     image: "/certs/cert3.webp",
@@ -71,7 +69,6 @@ const CERTS: Certificate[] = [
     issuer: "AWS Academy Graduate",
     date: "May 12, 2026",
     meta: "12 hours",
-    highlight: false,
   },
   {
     image: "/certs/cert4.webp",
@@ -81,7 +78,6 @@ const CERTS: Certificate[] = [
     issuer: "Oracle University",
     date: "Oct 22, 2025",
     meta: "Valid until Oct 22, 2027",
-    highlight: false,
   },
   {
     image: "/certs/cert5.webp",
@@ -91,7 +87,6 @@ const CERTS: Certificate[] = [
     issuer: "NCSA × Cisco Networking Academy",
     date: "Jun 17, 2026",
     meta: undefined as string | undefined,
-    highlight: false,
   },
 ];
 
@@ -104,12 +99,26 @@ const COMPETITION_CERTS: Certificate[] = [
     issuer: "Roi Et Rajabhat University",
     date: "Jul 31, 2026",
     meta: "Senior Level · Capture The Flag",
-    highlight: false,
     wide: true,
+  },
+  {
+    image: "/certs/htb.png",
+    width: 1120,
+    height: 790,
+    title: "Cyber Apocalypse CTF 2026: The Salt Crown",
+    issuer: "Hack The Box",
+    date: "Jul 24–29, 2026",
+    meta: "Team Rank 183 · 57,700 pts",
+    accent: "green",
   },
 ];
 
 function CertCard({ cert }: { cert: Certificate }) {
+  const highlightedCardClass =
+    cert.accent === "green"
+      ? "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-lime-400/40 bg-lime-400/[0.03] text-left transition-colors duration-300 hover:border-lime-300/70"
+      : "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-red-500/40 bg-red-500/[0.03] text-left transition-colors duration-300 hover:border-red-400/70";
+
   const card = (
     <ImageLightbox
       src={cert.image}
@@ -117,8 +126,8 @@ function CertCard({ cert }: { cert: Certificate }) {
       width={cert.width}
       height={cert.height}
       triggerClassName={
-        cert.highlight
-          ? "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-red-500/40 bg-red-500/[0.03] text-left transition-colors duration-300 hover:border-red-400/70"
+        cert.accent
+          ? highlightedCardClass
           : "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left transition-colors duration-300 hover:border-white/30"
       }
     >
@@ -152,13 +161,16 @@ function CertCard({ cert }: { cert: Certificate }) {
     </ImageLightbox>
   );
 
-  if (!cert.highlight) return card;
+  if (!cert.accent) return card;
+
+  const glowClass =
+    cert.accent === "green" ? "bg-lime-400/12" : "bg-red-500/12";
 
   return (
     <div className="relative h-full">
       <div
         aria-hidden
-        className="absolute -inset-1.5 -z-10 rounded-3xl bg-red-500/12 blur-lg"
+        className={`absolute -inset-1.5 -z-10 rounded-3xl blur-lg ${glowClass}`}
       />
       {card}
     </div>
@@ -185,7 +197,7 @@ export default function CertificatesGrid() {
             </h3>
           </div>
           <p className="text-[10px] tracking-[0.22em] text-zinc-600 uppercase">
-            01 Certificate
+            {String(COMPETITION_CERTS.length).padStart(2, "0")} Certificates
           </p>
         </div>
 
