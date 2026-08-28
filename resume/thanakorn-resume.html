@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thanakorn Jamnongprakhon — Cybersecurity Resume</title>
+    <meta
+      name="description"
+      content="Resume of Thanakorn Jamnongprakhon, Cybersecurity and SOC Analyst cooperative education candidate."
+    />
+    <style>
+      :root {
+        --ink: #101827;
+        --muted: #586270;
+        --line: #d9e0e7;
+        --paper: #ffffff;
+        --wash: #f4f7f9;
+        --cyan: #00a7b5;
+        --cyan-dark: #007b86;
+        --lime: #b8ef3f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #e8edf1;
+        color: var(--ink);
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        padding: 24px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .resume {
+        position: relative;
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        overflow: hidden;
+        background: var(--paper);
+        box-shadow: 0 24px 70px rgb(16 24 39 / 16%);
+      }
+
+      .resume::before {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4mm;
+        content: "";
+        background: var(--ink);
+      }
+
+      .resume::after {
+        position: absolute;
+        top: 0;
+        left: 4mm;
+        width: 58mm;
+        height: 3mm;
+        content: "";
+        background: linear-gradient(90deg, var(--lime), var(--cyan));
+      }
+
+      .page {
+        padding: 11mm 12mm 9mm 16mm;
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 31mm;
+        gap: 8mm;
+        align-items: start;
+        padding-bottom: 5mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .eyebrow,
+      .section-label,
+      .meta,
+      .skill-label,
+      .footer {
+        font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        display: flex;
+        gap: 2.4mm;
+        align-items: center;
+        margin: 0 0 2.2mm;
+        color: var(--cyan-dark);
+        font-size: 7pt;
+        font-weight: 700;
+      }
+
+      .eyebrow::before {
+        width: 12mm;
+        height: 1.2mm;
+        content: "";
+        background: var(--lime);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 26pt;
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+        text-transform: uppercase;
+      }
+
+      .role {
+        margin: 2.2mm 0 0;
+        color: var(--muted);
+        font-size: 10pt;
+        font-weight: 650;
+        letter-spacing: 0.03em;
+      }
+
+      .role strong {
+        color: var(--cyan-dark);
+      }
+
+      .photo {
+        display: block;
+        width: 31mm;
+        height: 38mm;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid #aab5c0;
+        background: var(--wash);
+      }
+
+      .photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transform: scale(1.45);
+        transform-origin: 50% 0;
+      }
+
+      .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.8mm 4mm;
+        margin-top: 3.4mm;
+        color: #3f4a57;
+        font-size: 7.4pt;
+      }
+
+      .contact span,
+      .contact a {
+        white-space: nowrap;
+      }
+
+      .contact b {
+        margin-right: 1mm;
+        color: var(--cyan-dark);
+        font-family: Consolas, monospace;
+        font-size: 6.4pt;
+      }
+
+      .summary {
+        position: relative;
+        margin: 4mm 0 4.4mm;
+        padding: 3.5mm 4mm 3.5mm 6mm;
+        border-left: 1.4mm solid var(--cyan);
+        background: var(--wash);
+        color: #323c48;
+        font-size: 8.1pt;
+        line-height: 1.48;
+      }
+
+      .summary strong {
+        color: var(--ink);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.72fr) minmax(0, 0.84fr);
+        gap: 7mm;
+      }
+
+      section + section {
+        margin-top: 4.5mm;
+      }
+
+      .section-heading {
+        display: flex;
+        gap: 2.6mm;
+        align-items: center;
+        margin-bottom: 2.7mm;
+      }
+
+      .section-label {
+        flex: 0 0 auto;
+        color: var(--ink);
+        font-size: 7.4pt;
+        font-weight: 800;
+      }
+
+      .section-number {
+        color: var(--cyan-dark);
+      }
+
+      .section-rule {
+        width: 100%;
+        height: 1px;
+        background: var(--line);
+      }
+
+      .project + .project {
+        margin-top: 3.7mm;
+        padding-top: 3.6mm;
+        border-top: 1px solid var(--line);
+      }
+
+      .project-head,
+      .education-head {
+        display: flex;
+        gap: 3mm;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: 10pt;
+        line-height: 1.15;
+      }
+
+      h3 {
+        margin-bottom: 0;
+        font-size: 8.7pt;
+        line-height: 1.2;
+      }
+
+      .meta {
+        flex: 0 0 auto;
+        margin: 0;
+        color: var(--cyan-dark);
+        font-size: 6.2pt;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .subline {
+        margin: 0.9mm 0 1.6mm;
+        color: var(--muted);
+        font-size: 7.1pt;
+        font-weight: 600;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 3.8mm;
+      }
+
+      li {
+        padding-left: 0.6mm;
+        color: #36414d;
+        font-size: 7.5pt;
+        line-height: 1.38;
+      }
+
+      li + li {
+        margin-top: 1mm;
+      }
+
+      li::marker {
+        color: var(--cyan);
+      }
+
+      .sidebar {
+        padding-left: 5mm;
+        border-left: 1px solid var(--line);
+      }
+
+      .education {
+        position: relative;
+      }
+
+      .education h3 {
+        font-size: 8.5pt;
+      }
+
+      .degree {
+        margin: 1.1mm 0 0;
+        color: #38434f;
+        font-size: 7.4pt;
+        line-height: 1.4;
+      }
+
+      .gpa {
+        display: inline-block;
+        margin-top: 1.8mm;
+        padding: 1mm 1.7mm;
+        background: var(--ink);
+        color: white;
+        font-family: Consolas, monospace;
+        font-size: 6.4pt;
+        font-weight: 700;
+      }
+
+      .cert-list {
+        display: grid;
+        gap: 2.4mm;
+      }
+
+      .cert {
+        padding-left: 2.3mm;
+        border-left: 0.8mm solid var(--lime);
+      }
+
+      .cert strong {
+        display: block;
+        font-size: 7.5pt;
+        line-height: 1.25;
+      }
+
+      .cert span {
+        display: block;
+        margin-top: 0.5mm;
+        color: var(--muted);
+        font-size: 6.5pt;
+        line-height: 1.3;
+      }
+
+      .achievement {
+        padding: 2.6mm;
+        border: 1px solid var(--line);
+        background: var(--wash);
+      }
+
+      .achievement + .achievement {
+        margin-top: 2mm;
+      }
+
+      .achievement strong {
+        display: block;
+        color: var(--cyan-dark);
+        font-size: 11pt;
+        line-height: 1;
+      }
+
+      .achievement span {
+        display: block;
+        margin-top: 1.2mm;
+        color: #3e4955;
+        font-size: 6.8pt;
+        line-height: 1.35;
+      }
+
+      .skill-group + .skill-group {
+        margin-top: 2.5mm;
+      }
+
+      .skill-label {
+        margin: 0 0 1mm;
+        color: var(--cyan-dark);
+        font-size: 6.2pt;
+        font-weight: 800;
+      }
+
+      .skill-copy {
+        margin: 0;
+        color: #38434f;
+        font-size: 7pt;
+        line-height: 1.42;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4.2mm;
+        padding-top: 2.6mm;
+        border-top: 1px solid var(--line);
+        color: #7c8793;
+        font-size: 5.8pt;
+      }
+
+      .placeholder {
+        color: #a13d2d;
+        font-weight: 700;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 210mm;
+          height: 297mm;
+          background: white;
+        }
+
+        body {
+          padding: 0;
+        }
+
+        .resume {
+          width: 210mm;
+          height: 297mm;
+          min-height: 0;
+          box-shadow: none;
+        }
+      }
+
+      /* Keep the A4/desktop two-column layout intact at print width. */
+      @media (max-width: 620px) {
+        body {
+          padding: 0;
+        }
+
+        .resume {
+          width: 100%;
+          min-height: 100vh;
+        }
+
+        .page {
+          padding: 28px 22px 24px 34px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          padding: 0;
+          border-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="resume" aria-label="Resume of Thanakorn Jamnongprakhon">
+      <div class="page">
+        <header class="header">
+          <div>
+            <p class="eyebrow">Cooperative Education Candidate</p>
+            <h1>Thanakorn<br />Jamnongprakhon</h1>
+            <p class="role"><strong>Cybersecurity</strong> / SOC Analyst Intern</p>
+
+            <div class="contact" aria-label="Contact information">
+              <span><b>LOC</b>Bangkok, Thailand</span>
+              <a href="tel:+66646941552"><b>TEL</b>064-694-1552</a>
+              <a href="mailto:macvrtyuj@gmail.com"><b>MAIL</b>macvrtyuj@gmail.com</a>
+              <a href="https://www.linkedin.com/in/thanakorn-jamnongprakhon-5517a9393"><b>IN</b>LinkedIn</a>
+              <a href="https://github.com/MJAYY05"><b>GH</b>github.com/MJAYY05</a>
+              <a href="https://mjsec-portfolio.vercel.app/"><b>WEB</b>https://mjsec-portfolio.vercel.app/</a>
+            </div>
+          </div>
+
+          <div class="photo">
+            <img src="thanakorn-profile.jpg" alt="Thanakorn Jamnongprakhon" />
+          </div>
+        </header>
+
+        <p class="summary">
+          Fourth-year <strong>Computer Science</strong> student at Bangkok University with a cumulative
+          GPA of <strong>3.54</strong>, focused on cybersecurity and data science. Hands-on experience in
+          security monitoring, log analysis, cloud deployment, and Python development. CRTA-certified
+          and seeking a cooperative education opportunity in <strong>SOC / Blue Team operations</strong>.
+        </p>
+
+        <div class="grid">
+          <div class="main-column">
+            <section aria-labelledby="experience-title">
+              <div class="section-heading">
+                <span class="section-label"><span class="section-number">01</span> / Cybersecurity Experience</span>
+                <span class="section-rule"></span>
+              </div>
+
+              <article class="project">
+                <div class="project-head">
+                  <h2 id="experience-title">Umbra XDR</h2>
+                  <p class="meta">2026 — Present</p>
+                </div>
+                <p class="subline">Cybersecurity Project Team Member · VSEG Team × SIAM AI Cloud</p>
+                <ul>
+                  <li>Collaborating on a real-time security analytics POC designed to detect anomalous behavior and support faster SOC investigation.</li>
+                  <li>Building a workflow that ingests and parses logs, applies detection rules, and visualizes security events using Wazuh and Grafana.</li>
+                  <li>Evaluating a scalable pipeline with Kafka, NVIDIA Morpheus, H100 GPU infrastructure, and AI-based anomaly detection.</li>
+                </ul>
+              </article>
+
+              <article class="project">
+                <div class="project-head">
+                  <h2>VSEG Email Platform</h2>
+                  <p class="meta">Cloud Project</p>
+                </div>
+                <p class="subline">Backend &amp; Cloud Developer · Academic Team Project</p>
+                <ul>
+                  <li>Designed the UI/UX and developed the backend for a cloud messaging environment used to study data flow and identity management.</li>
+                  <li>Configured GitHub Actions for CI/CD and deployed the application with Microsoft Azure and Azure SQL Database.</li>
+                </ul>
+              </article>
+
+              <article class="project">
+                <div class="project-head">
+                  <h2>Leo Auto Inventory System</h2>
+                  <p class="meta">Software Project</p>
+                </div>
+                <p class="subline">Full-stack Developer · Python / FastAPI / Gemini API</p>
+                <ul>
+                  <li>Developed an end-to-end inventory system with CRUD operations, real-time stock tracking, order management, and inventory value calculation.</li>
+                  <li>Integrated Gemini 2.5 Flash for natural-language assistance, image-based part recognition, and automated stock summaries.</li>
+                </ul>
+              </article>
+            </section>
+
+            <section aria-labelledby="skills-title">
+              <div class="section-heading">
+                <span id="skills-title" class="section-label"><span class="section-number">02</span> / Technical Skills</span>
+                <span class="section-rule"></span>
+              </div>
+
+              <div class="skill-group">
+                <p class="skill-label">Security &amp; Monitoring</p>
+                <p class="skill-copy">Wazuh · Wireshark · Burp Suite · Kali Linux · Grafana · SIEM Monitoring · Log Analysis</p>
+              </div>
+              <div class="skill-group">
+                <p class="skill-label">Programming &amp; Web</p>
+                <p class="skill-copy">Python · SQL · JavaScript · FastAPI · React · Next.js · HTML5 · CSS3</p>
+              </div>
+              <div class="skill-group">
+                <p class="skill-label">Cloud &amp; DevOps</p>
+                <p class="skill-copy">Microsoft Azure · Azure SQL Database · Git · GitHub Actions · CI/CD</p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="sidebar" aria-label="Education, certifications and achievements">
+            <section aria-labelledby="education-title">
+              <div class="section-heading">
+                <span id="education-title" class="section-label"><span class="section-number">03</span> / Education</span>
+                <span class="section-rule"></span>
+              </div>
+
+              <div class="education">
+                <div class="education-head">
+                  <h3>Bangkok University</h3>
+                  <p class="meta">2023 — Present</p>
+                </div>
+                <p class="degree">B.Sc. in Computer Science<br />School of Information Technology and Innovation</p>
+                <span class="gpa">CUM. GPA 3.54 / 4.00</span>
+              </div>
+            </section>
+
+            <section aria-labelledby="certifications-title">
+              <div class="section-heading">
+                <span id="certifications-title" class="section-label"><span class="section-number">04</span> / Certifications</span>
+                <span class="section-rule"></span>
+              </div>
+
+              <div class="cert-list">
+                <div class="cert">
+                  <strong>Certified Red Team Analyst (CRTA)</strong>
+                  <span>CyberWarfare Labs · 2026</span>
+                </div>
+                <div class="cert">
+                  <strong>Penetration Test Specialist</strong>
+                  <span>National Cyber Security Agency · 2026</span>
+                </div>
+                <div class="cert">
+                  <strong>Ethical Hacker</strong>
+                  <span>NCSA × Cisco Networking Academy · 2026</span>
+                </div>
+                <div class="cert">
+                  <strong>OCI Generative AI Professional</strong>
+                  <span>Oracle University · Valid to 2027</span>
+                </div>
+              </div>
+            </section>
+
+            <section aria-labelledby="competitions-title">
+              <div class="section-heading">
+                <span id="competitions-title" class="section-label"><span class="section-number">05</span> / Competitions</span>
+                <span class="section-rule"></span>
+              </div>
+
+              <div class="achievement">
+                <strong>Rank 183</strong>
+                <span>Cyber Apocalypse CTF 2026<br />The Salt Crown · 57,700 pts</span>
+              </div>
+              <div class="achievement">
+                <strong>Senior Level</strong>
+                <span>IT RERU Cyber Hackathon 2026 #2 · Capture The Flag</span>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+        <footer class="footer">
+          <span>Security is never finished.</span>
+          <span>References available upon request.</span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

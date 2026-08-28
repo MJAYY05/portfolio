@@ -111,6 +111,14 @@ const COMPETITION_CERTS: Certificate[] = [
     meta: "Team Rank 183 · 57,700 pts",
     accent: "green",
   },
+  {
+    image: "/certs/meettheyouth.webp",
+    width: 1121,
+    height: 792,
+    title: "Meet The Youth Cyber Guardians & White Hat Thailand 2026",
+    issuer: "Cyber Command, Royal Thai Armed Forces Headquarters",
+    date: "Aug 23, 2026",
+  },
 ];
 
 function CertCard({ cert }: { cert: Certificate }) {
