@@ -90,6 +90,51 @@ function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
 
 const PROJECTS = [
   {
+    id: "umbra-xdr",
+    tag: "Featured Project",
+    status: "Ongoing" as string | null,
+    title: "Umbra XDR",
+    subtitle: "VSEG Teams — commissioned by SIAM AI Cloud",
+    image: {
+      fit: "contain" as const,
+      src: "/projects/siamai.webp",
+      width: 905,
+      height: 330,
+      alt: "SIAM AI Cloud logo",
+      caption: "Commissioned by SIAM AI Cloud",
+    },
+    highlights: [
+      {
+        label: "The Challenge",
+        en: "Data volume and cyber threats keep growing more complex and constantly evolving. Legacy signature-based detection is often slow, generates too many false positives, and can't keep up with new attack patterns — leaving SOC teams overloaded. This project analyzes data in real time and uses AI to detect anomalous behavior, responding to threats automatically.",
+        th: "ปัจจุบันปริมาณข้อมูลและภัยคุกคามทางไซเบอร์มีความซับซ้อนและเปลี่ยนแปลงตลอดเวลา ระบบตรวจจับแบบเดิมที่พึ่งพา Signature มักล่าช้า แจ้งเตือนผิดพลาดสูง (False Positive) และตรวจจับภัยรูปแบบใหม่ไม่ทัน ส่งผลให้ทีม SOC ต้องแบกรับภาระหนัก โครงการนี้จึงถูกพัฒนาขึ้นเพื่อวิเคราะห์ข้อมูลแบบ Real-Time และใช้ AI ตรวจจับพฤติกรรมผิดปกติเพื่อตอบสนองต่อภัยคุกคามโดยอัตโนมัติ",
+      },
+      {
+        label: "Solution & Key Functions",
+        en: "AI-driven detection analyzes and flags abnormal behavior without relying on signatures. Real-time processing runs on the NVIDIA Morpheus Framework with H100 GPUs. Lightweight agents (Python/C++) paired with Sysmon collect deep-level logs, and automated alerts fire through Webhooks (LINE/Discord/Slack) with instant reports for the SOC team.",
+        th: "ใช้ AI วิเคราะห์และตรวจจับพฤติกรรมผิดปกติโดยไม่ต้องพึ่ง Signature ประมวลผลข้อมูลแบบ Real-Time ด้วย NVIDIA Morpheus Framework บน H100 GPUs ติดตั้ง Agent ขนาดเล็ก (Python/C++) ร่วมกับ Sysmon เพื่อเก็บ Logs เชิงลึก และแจ้งเตือนอัตโนมัติผ่าน Webhooks (LINE/Discord/Slack) พร้อมสร้างรายงานให้ทีม SOC ทันที",
+      },
+      {
+        label: "Impact",
+        en: "Adaptive Learning raises detection coverage for new attack patterns, real-time processing cuts incident response time, and GPU acceleration keeps costs down while scaling to large data volumes.",
+        th: "ยกระดับการตรวจจับภัยรูปแบบใหม่ด้วย Adaptive Learning ลดระยะเวลาตอบสนองต่อเหตุการณ์ด้วยการประมวลผลแบบ Real-Time และประหยัดต้นทุนพร้อมรองรับข้อมูลขนาดใหญ่ด้วย GPU Acceleration",
+      },
+      {
+        label: "Current Progress",
+        en: "Currently in the POC phase — building a pipeline that ingests logs, parses fields, applies detection rules, and renders results on a dashboard. The next phase adds AI, Kafka, and NVIDIA Morpheus to the system.",
+        th: "ตอนนี้อยู่ในช่วง POC — สร้าง pipeline รับ log เข้ามา แตกฟิลด์ข้อมูล เขียน rule ตรวจจับ และแสดงผลบน dashboard เฟสถัดไปคือการเพิ่ม AI, Kafka และ NVIDIA Morpheus เข้ามาในระบบ",
+      },
+      {
+        label: "Team & Advisor",
+        en: "Advisor: Khwanruthai Kunkitcharoen — Team: Thanakorn Jamnongprakhon, Nawakhun Phromlok, Phuwadon Phiukhangkun, Tranphop Najaroon, La-ongthip Phokhrongwong",
+        th: "อาจารย์ที่ปรึกษา: ขวัญฤทัย กุลกิจเจริญ — ทีม: ธนกร จำนงประโคน, นวคุณ พรมโลก, ภูวดล ผิวขางกูล, ตรัณภพ นาจรูญ, ละอองทิพย์ พ่อครวงศ์",
+      },
+    ],
+    stack: ["NVIDIA Morpheus", "NVIDIA H100", "Python", "Wazuh", "Grafana", "Kafka"],
+    github: null as string | null,
+    youtube: null as string | null,
+  },
+  {
     id: "vseg-email",
     tag: "Featured Project",
     status: null as string | null,
@@ -202,51 +247,6 @@ const PROJECTS = [
     stack: ["ESP32 NodeMCU", "IoT", "Blynk", "L298N Motor Driver", "HC-SR04 Ultrasonic"],
     github: null as string | null,
     youtube: "https://youtu.be/WRQXNdCPoXw?si=cxX1vVLuLVwKI4_Y",
-  },
-  {
-    id: "umbra-xdr",
-    tag: "Featured Project",
-    status: "Ongoing" as string | null,
-    title: "Umbra XDR",
-    subtitle: "VSEG Teams — commissioned by SIAM AI Cloud",
-    image: {
-      fit: "contain" as const,
-      src: "/projects/siamai.webp",
-      width: 905,
-      height: 330,
-      alt: "SIAM AI Cloud logo",
-      caption: "Commissioned by SIAM AI Cloud",
-    },
-    highlights: [
-      {
-        label: "The Challenge",
-        en: "Data volume and cyber threats keep growing more complex and constantly evolving. Legacy signature-based detection is often slow, generates too many false positives, and can't keep up with new attack patterns — leaving SOC teams overloaded. This project analyzes data in real time and uses AI to detect anomalous behavior, responding to threats automatically.",
-        th: "ปัจจุบันปริมาณข้อมูลและภัยคุกคามทางไซเบอร์มีความซับซ้อนและเปลี่ยนแปลงตลอดเวลา ระบบตรวจจับแบบเดิมที่พึ่งพา Signature มักล่าช้า แจ้งเตือนผิดพลาดสูง (False Positive) และตรวจจับภัยรูปแบบใหม่ไม่ทัน ส่งผลให้ทีม SOC ต้องแบกรับภาระหนัก โครงการนี้จึงถูกพัฒนาขึ้นเพื่อวิเคราะห์ข้อมูลแบบ Real-Time และใช้ AI ตรวจจับพฤติกรรมผิดปกติเพื่อตอบสนองต่อภัยคุกคามโดยอัตโนมัติ",
-      },
-      {
-        label: "Solution & Key Functions",
-        en: "AI-driven detection analyzes and flags abnormal behavior without relying on signatures. Real-time processing runs on the NVIDIA Morpheus Framework with H100 GPUs. Lightweight agents (Python/C++) paired with Sysmon collect deep-level logs, and automated alerts fire through Webhooks (LINE/Discord/Slack) with instant reports for the SOC team.",
-        th: "ใช้ AI วิเคราะห์และตรวจจับพฤติกรรมผิดปกติโดยไม่ต้องพึ่ง Signature ประมวลผลข้อมูลแบบ Real-Time ด้วย NVIDIA Morpheus Framework บน H100 GPUs ติดตั้ง Agent ขนาดเล็ก (Python/C++) ร่วมกับ Sysmon เพื่อเก็บ Logs เชิงลึก และแจ้งเตือนอัตโนมัติผ่าน Webhooks (LINE/Discord/Slack) พร้อมสร้างรายงานให้ทีม SOC ทันที",
-      },
-      {
-        label: "Impact",
-        en: "Adaptive Learning raises detection coverage for new attack patterns, real-time processing cuts incident response time, and GPU acceleration keeps costs down while scaling to large data volumes.",
-        th: "ยกระดับการตรวจจับภัยรูปแบบใหม่ด้วย Adaptive Learning ลดระยะเวลาตอบสนองต่อเหตุการณ์ด้วยการประมวลผลแบบ Real-Time และประหยัดต้นทุนพร้อมรองรับข้อมูลขนาดใหญ่ด้วย GPU Acceleration",
-      },
-      {
-        label: "Current Progress",
-        en: "Currently in the POC phase — building a pipeline that ingests logs, parses fields, applies detection rules, and renders results on a dashboard. The next phase adds AI, Kafka, and NVIDIA Morpheus to the system.",
-        th: "ตอนนี้อยู่ในช่วง POC — สร้าง pipeline รับ log เข้ามา แตกฟิลด์ข้อมูล เขียน rule ตรวจจับ และแสดงผลบน dashboard เฟสถัดไปคือการเพิ่ม AI, Kafka และ NVIDIA Morpheus เข้ามาในระบบ",
-      },
-      {
-        label: "Team & Advisor",
-        en: "Advisor: Khwanruthai Kunkitcharoen — Team: Thanakorn Jamnongprakhon, Nawakhun Phromlok, Phuwadon Phiukhangkun, Tranphop Najaroon, La-ongthip Phokhrongwong",
-        th: "อาจารย์ที่ปรึกษา: ขวัญฤทัย กุลกิจเจริญ — ทีม: ธนกร จำนงประโคน, นวคุณ พรมโลก, ภูวดล ผิวขางกูล, ตรัณภพ นาจรูญ, ละอองทิพย์ พ่อครวงศ์",
-      },
-    ],
-    stack: ["NVIDIA Morpheus", "NVIDIA H100", "Python", "Wazuh", "Grafana", "Kafka"],
-    github: null as string | null,
-    youtube: null as string | null,
   },
 ];
 

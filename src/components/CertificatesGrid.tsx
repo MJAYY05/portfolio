@@ -119,6 +119,15 @@ const COMPETITION_CERTS: Certificate[] = [
     issuer: "Cyber Command, Royal Thai Armed Forces Headquarters",
     date: "Aug 23, 2026",
   },
+  {
+    image: "/certs/ncsaxcisco.webp",
+    width: 1600,
+    height: 1131,
+    title: "NCSA x CISCO CTF 2026",
+    issuer: "National Cyber Security Agency (NCSA) × Cisco × THNCA",
+    date: "Jun 27, 2026",
+    meta: "Certificate of Participation",
+  },
 ];
 
 function CertCard({ cert }: { cert: Certificate }) {

@@ -11,11 +11,120 @@ type TrailPoint = {
   life: number;
 };
 
+type Slide = {
+  book?: string;
+  chapter?: string;
+  text: string;
+  ref?: string;
+};
+
+const GOD_IMAGES = [
+  "/god.jpg",
+  "/god2.jpg",
+  "/god3.jpg",
+  "/god4.jpg",
+  "/god5.jpg",
+  "/god6.jpg",
+  "/god7.jpg",
+  "/god8.jpg",
+];
+
+const SPECIAL_SLIDES: Array<{ image: string; slide: Slide }> = [
+  {
+    image: "/chill.jpg",
+    slide: { text: "Sometimes you just need to chill and go outside." },
+  },
+  {
+    image: "/grass.jpg",
+    slide: { text: "Take a deep breath, calm your mind, and be still." },
+  },
+  {
+    image: "/keepgoing.jpg",
+    slide: { text: "Keep going. You are on the right path." },
+  },
+];
+
+const VERSES: Slide[] = [
+  {
+    book: "PSALM",
+    chapter: "034",
+    text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+    ref: "Psalm 34:18",
+  },
+  {
+    book: "PHILIPPIANS",
+    chapter: "004",
+    text: "I can do all this through him who gives me strength.",
+    ref: "Philippians 4:13",
+  },
+  {
+    book: "JOSHUA",
+    chapter: "001",
+    text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+    ref: "Joshua 1:9",
+  },
+  {
+    book: "1 CORINTHIANS",
+    chapter: "009",
+    text: "Do you not know that in a race all the runners run, but only one gets the prize? Run in such a way as to get the prize.",
+    ref: "1 Corinthians 9:24",
+  },
+  {
+    book: "PROVERBS",
+    chapter: "027",
+    text: "As iron sharpens iron, so one person sharpens another.",
+    ref: "Proverbs 27:17",
+  },
+  {
+    book: "PROVERBS",
+    chapter: "011",
+    text: "The integrity of the upright guides them, but the unfaithful are destroyed by their duplicity.",
+    ref: "Proverbs 11:3",
+  },
+  {
+    book: "PROVERBS",
+    chapter: "015",
+    text: "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+    ref: "Proverbs 15:1",
+  },
+  {
+    book: "JAMES",
+    chapter: "001",
+    text: "Everyone should be quick to listen, slow to speak and slow to become angry.",
+    ref: "James 1:19",
+  },
+  {
+    book: "1 CORINTHIANS",
+    chapter: "013",
+    text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs.",
+    ref: "1 Corinthians 13:4-7",
+  },
+];
+
 export default function MotionExperience() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const introCursorRef = useRef<HTMLDivElement>(null);
   const [introVisible, setIntroVisible] = useState(true);
   const [introLeaving, setIntroLeaving] = useState(false);
+  const [slide, setSlide] = useState<Slide>(VERSES[0]);
+  const [background, setBackground] = useState(GOD_IMAGES[0]);
+  const [slideReady, setSlideReady] = useState(false);
+
+  useEffect(() => {
+    const pickIndex = Math.floor(
+      Math.random() * (VERSES.length + SPECIAL_SLIDES.length),
+    );
+
+    if (pickIndex < VERSES.length) {
+      setSlide(VERSES[pickIndex]);
+      setBackground(GOD_IMAGES[Math.floor(Math.random() * GOD_IMAGES.length)]);
+    } else {
+      const special = SPECIAL_SLIDES[pickIndex - VERSES.length];
+      setSlide(special.slide);
+      setBackground(special.image);
+    }
+    setSlideReady(true);
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -240,25 +349,34 @@ export default function MotionExperience() {
           className={`intro-screen ${introLeaving ? "is-leaving" : ""}`}
           onPointerDown={dismissIntro}
         >
-          <div className="intro-art" aria-hidden />
+          <div
+            className="intro-art"
+            style={{
+              backgroundImage: slideReady ? `url(${background})` : "none",
+              opacity: slideReady ? 1 : 0,
+              transition: "opacity 220ms ease",
+            }}
+            aria-hidden
+          />
           <div className="intro-shade" aria-hidden />
           <div className="intro-light" aria-hidden />
           <div className="intro-fog intro-fog-one" aria-hidden />
           <div className="intro-fog intro-fog-two" aria-hidden />
           <div className="intro-grain" aria-hidden />
 
-          <div className="intro-index" aria-hidden>
-            <span>PSALM</span>
-            <span>034</span>
-          </div>
+          {slideReady && slide.book && slide.chapter && (
+            <div className="intro-index" aria-hidden>
+              <span>{slide.book}</span>
+              <span>{slide.chapter}</span>
+            </div>
+          )}
 
-          <blockquote className="intro-verse">
-            <p>
-              The Lord is close to the brokenhearted and saves those who are
-              crushed in spirit.
-            </p>
-            <footer>Psalm 34:18</footer>
-          </blockquote>
+          {slideReady && (
+            <blockquote className="intro-verse">
+              <p>{slide.text}</p>
+              {slide.ref && <footer>{slide.ref}</footer>}
+            </blockquote>
+          )}
 
           <p className="intro-skip" aria-hidden>
             Press Enter to continue
