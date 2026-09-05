@@ -288,6 +288,16 @@ body {
   animation: profile-float 7s ease-in-out infinite;
 }
 
+.badge-spin {
+  animation: badge-spin 9s linear infinite;
+}
+
+@keyframes badge-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Profile / About swipe deck */
 .hero-deck-track {
   display: flex;

@@ -244,10 +244,11 @@ export default function SiteBackground() {
       }
     };
 
-    const clock = new THREE.Clock();
+    const clock = new THREE.Timer();
     const render = () => {
       if (!isVisible) return;
 
+      clock.update();
       const delta = Math.min(clock.getDelta(), 0.05);
       const smoothing = reducedMotion ? 1 : 1 - Math.pow(0.001, delta);
       smoothScroll += (scrollProgress - smoothScroll) * smoothing;
@@ -264,7 +265,7 @@ export default function SiteBackground() {
         camera.position.z - 27,
       );
 
-      const pulse = 0.58 + Math.sin(clock.elapsedTime * 1.6) * 0.16;
+      const pulse = 0.58 + Math.sin(clock.getElapsed() * 1.6) * 0.16;
       beaconMaterial.opacity = pulse;
       rimLight.position.z = camera.position.z - 28;
 

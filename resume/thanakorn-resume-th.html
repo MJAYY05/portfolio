@@ -73,7 +73,7 @@
       }
 
       .page {
-        padding: 11mm 12mm 9mm 16mm;
+        padding: 6.5mm 12mm 5mm 16mm;
       }
 
       .header {
@@ -81,7 +81,7 @@
         grid-template-columns: minmax(0, 1fr) 31mm;
         gap: 8mm;
         align-items: start;
-        padding-bottom: 5mm;
+        padding-bottom: 3mm;
         border-bottom: 1px solid var(--line);
       }
 
@@ -114,16 +114,16 @@
 
       h1 {
         margin: 0;
-        font-size: 26pt;
+        font-size: 25pt;
         line-height: 0.94;
         letter-spacing: -0.055em;
         text-transform: uppercase;
       }
 
       .role {
-        margin: 2.2mm 0 0;
+        margin: 2mm 0 0;
         color: var(--muted);
-        font-size: 10pt;
+        font-size: 9.6pt;
         font-weight: 650;
         letter-spacing: 0.03em;
       }
@@ -147,18 +147,18 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center top;
-        transform: scale(1.45);
-        transform-origin: 50% 0;
+        object-position: center;
+        transform: scale(1.85);
+        transform-origin: 50% 1%;
       }
 
       .contact {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.8mm 4mm;
-        margin-top: 3.4mm;
+        gap: 1.3mm 3.6mm;
+        margin-top: 2.3mm;
         color: #3f4a57;
-        font-size: 7.4pt;
+        font-size: 7.1pt;
       }
 
       .contact span,
@@ -170,18 +170,27 @@
         margin-right: 1mm;
         color: var(--cyan-dark);
         font-family: Consolas, monospace;
-        font-size: 6.4pt;
+        font-size: 6.2pt;
+      }
+
+      .contact .addr {
+        white-space: normal;
+        flex-basis: 100%;
+      }
+
+      .objective-label {
+        margin: 3.6mm 0 1.4mm;
       }
 
       .summary {
         position: relative;
-        margin: 4mm 0 4.4mm;
-        padding: 3.5mm 4mm 3.5mm 6mm;
+        margin: 0 0 3.8mm;
+        padding: 3.2mm 4mm 3.2mm 6mm;
         border-left: 1.4mm solid var(--cyan);
         background: var(--wash);
         color: #323c48;
-        font-size: 8.1pt;
-        line-height: 1.48;
+        font-size: 7.9pt;
+        line-height: 1.5;
       }
 
       .summary strong {
@@ -195,14 +204,14 @@
       }
 
       section + section {
-        margin-top: 4.5mm;
+        margin-top: 2.6mm;
       }
 
       .section-heading {
         display: flex;
         gap: 2.6mm;
         align-items: center;
-        margin-bottom: 2.7mm;
+        margin-bottom: 2.5mm;
       }
 
       .section-label {
@@ -223,8 +232,8 @@
       }
 
       .project + .project {
-        margin-top: 3.7mm;
-        padding-top: 3.6mm;
+        margin-top: 2.8mm;
+        padding-top: 2.6mm;
         border-top: 1px solid var(--line);
       }
 
@@ -244,7 +253,7 @@
 
       h2 {
         margin-bottom: 0;
-        font-size: 10pt;
+        font-size: 9.8pt;
         line-height: 1.15;
       }
 
@@ -258,15 +267,15 @@
         flex: 0 0 auto;
         margin: 0;
         color: var(--cyan-dark);
-        font-size: 6.2pt;
+        font-size: 6.1pt;
         font-weight: 700;
         white-space: nowrap;
       }
 
       .subline {
-        margin: 0.9mm 0 1.6mm;
+        margin: 0.9mm 0 1.5mm;
         color: var(--muted);
-        font-size: 7.1pt;
+        font-size: 7pt;
         font-weight: 600;
       }
 
@@ -278,12 +287,12 @@
       li {
         padding-left: 0.6mm;
         color: #36414d;
-        font-size: 7.5pt;
-        line-height: 1.38;
+        font-size: 7.2pt;
+        line-height: 1.42;
       }
 
       li + li {
-        margin-top: 1mm;
+        margin-top: 0.9mm;
       }
 
       li::marker {
@@ -306,24 +315,24 @@
       .degree {
         margin: 1.1mm 0 0;
         color: #38434f;
-        font-size: 7.4pt;
-        line-height: 1.4;
+        font-size: 7.3pt;
+        line-height: 1.45;
       }
 
       .gpa {
         display: inline-block;
-        margin-top: 1.8mm;
+        margin-top: 1.7mm;
         padding: 1mm 1.7mm;
         background: var(--ink);
         color: white;
         font-family: Consolas, monospace;
-        font-size: 6.4pt;
+        font-size: 6.3pt;
         font-weight: 700;
       }
 
       .cert-list {
         display: grid;
-        gap: 2.4mm;
+        gap: 1.9mm;
       }
 
       .cert {
@@ -333,7 +342,7 @@
 
       .cert strong {
         display: block;
-        font-size: 7.5pt;
+        font-size: 7.4pt;
         line-height: 1.25;
       }
 
@@ -341,37 +350,60 @@
         display: block;
         margin-top: 0.5mm;
         color: var(--muted);
-        font-size: 6.5pt;
-        line-height: 1.3;
+        font-size: 6.4pt;
+        line-height: 1.35;
+      }
+
+      .cert .status {
+        color: var(--cyan-dark);
+        font-weight: 800;
       }
 
       .achievement {
-        padding: 2.6mm;
+        padding: 1.8mm 2.2mm;
         border: 1px solid var(--line);
         background: var(--wash);
       }
 
       .achievement + .achievement {
-        margin-top: 2mm;
+        margin-top: 1.6mm;
       }
 
-      .achievement strong {
+      .comp-title {
         display: block;
+        color: var(--ink);
+        font-size: 6.9pt;
+        font-weight: 800;
+        line-height: 1.28;
+      }
+
+      .org {
+        display: block;
+        margin-top: 0.5mm;
         color: var(--cyan-dark);
-        font-size: 11pt;
-        line-height: 1;
-      }
-
-      .achievement span {
-        display: block;
-        margin-top: 1.2mm;
-        color: #3e4955;
-        font-size: 6.8pt;
+        font-size: 5.9pt;
+        font-weight: 700;
         line-height: 1.35;
       }
 
+      .comp-detail {
+        margin: 1mm 0 0;
+        color: #3e4955;
+        font-size: 6.3pt;
+        line-height: 1.38;
+      }
+
+      .stat {
+        display: block;
+        margin-top: 0.8mm;
+        color: var(--ink);
+        font-family: Consolas, monospace;
+        font-size: 5.9pt;
+        font-weight: 700;
+      }
+
       .skill-group + .skill-group {
-        margin-top: 2.5mm;
+        margin-top: 2.3mm;
       }
 
       .skill-label {
@@ -384,23 +416,59 @@
       .skill-copy {
         margin: 0;
         color: #38434f;
-        font-size: 7pt;
-        line-height: 1.42;
+        font-size: 6.9pt;
+        line-height: 1.45;
+      }
+
+      .skills-quad {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 6mm;
+      }
+
+      .lvl-list {
+        display: grid;
+        gap: 0.8mm;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .lvl-list-2col {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 3mm;
+      }
+
+      .lvl-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 2mm;
+        padding-left: 0;
+        color: #38434f;
+        font-size: 6.9pt;
+        line-height: 1.32;
+      }
+
+      .lvl-list li::marker {
+        content: none;
+      }
+
+      .lvl-list b {
+        color: var(--cyan-dark);
+        font-family: Consolas, monospace;
+        font-size: 6.1pt;
+        font-weight: 700;
+        white-space: nowrap;
       }
 
       .footer {
         display: flex;
         justify-content: space-between;
-        margin-top: 4.2mm;
-        padding-top: 2.6mm;
+        margin-top: 2.4mm;
+        padding-top: 1.8mm;
         border-top: 1px solid var(--line);
         color: #7c8793;
         font-size: 5.8pt;
-      }
-
-      .placeholder {
-        color: #a13d2d;
-        font-weight: 700;
       }
 
       .thai {
@@ -413,26 +481,16 @@
       .thai .skill-label,
       .thai .footer {
         font-family: "Leelawadee UI", "Noto Sans Thai", Tahoma, sans-serif;
-        letter-spacing: 0.025em;
+        letter-spacing: 0.02em;
       }
 
       .thai h1 {
-        font-size: 28pt;
-        letter-spacing: -0.035em;
+        font-size: 26pt;
+        letter-spacing: -0.03em;
       }
 
       .thai .role {
         font-size: 9pt;
-      }
-
-      .thai .summary {
-        font-size: 7.8pt;
-        line-height: 1.5;
-      }
-
-      .thai li {
-        font-size: 7.25pt;
-        line-height: 1.42;
       }
 
       @page {
@@ -444,7 +502,6 @@
         html,
         body {
           width: 210mm;
-          height: 297mm;
           background: white;
         }
 
@@ -454,7 +511,6 @@
 
         .resume {
           width: 210mm;
-          height: 297mm;
           min-height: 0;
           box-shadow: none;
         }
@@ -475,7 +531,8 @@
           padding: 28px 22px 24px 34px;
         }
 
-        .grid {
+        .grid,
+        .skills-quad {
           grid-template-columns: 1fr;
         }
 
@@ -493,28 +550,31 @@
           <div>
             <p class="eyebrow">ผู้สมัครสหกิจศึกษา</p>
             <h1>ธนกร<br />จำนงประโคน</h1>
-            <p class="role"><strong>ความมั่นคงปลอดภัยไซเบอร์</strong> / นักศึกษาฝึกงาน SOC</p>
+            <p class="role"><strong>ความมั่นคงปลอดภัยไซเบอร์</strong> / นักศึกษาฝึกงาน SOC Analyst</p>
 
             <div class="contact" aria-label="ข้อมูลติดต่อ">
-              <span><b>ที่อยู่</b>กรุงเทพมหานคร ประเทศไทย</span>
+              <span class="addr"><b>ที่อยู่</b>หอพัก Attitude BU (ตรงข้ามมหาวิทยาลัยกรุงเทพ วิทยาเขตรังสิต) ปทุมธานี ประเทศไทย</span>
+              <span><b>เกิด</b>3 สิงหาคม 2005</span>
               <a href="tel:+66646941552"><b>โทร</b>064-694-1552</a>
               <a href="mailto:macvrtyuj@gmail.com"><b>อีเมล</b>macvrtyuj@gmail.com</a>
-              <a href="https://www.linkedin.com/in/thanakorn-jamnongprakhon-5517a9393"><b>IN</b>LinkedIn</a>
+              <a href="https://www.linkedin.com/in/thanakorn-jamnongprakhon-5517a9393"><b>LINKEDIN</b>thanakorn-jamnongprakhon</a>
               <a href="https://github.com/MJAYY05"><b>GH</b>github.com/MJAYY05</a>
               <a href="https://mjsec-portfolio.vercel.app/"><b>เว็บ</b>mjsec-portfolio.vercel.app</a>
             </div>
           </div>
 
           <div class="photo">
-            <img src="thanakorn-profile.jpg" alt="ธนกร จำนงประโคน" />
+            <img src="thanakorn-profile-new.jpg" alt="ธนกร จำนงประโคน" />
           </div>
         </header>
 
+        <p class="eyebrow objective-label">เป้าหมายในการทำงาน</p>
         <p class="summary">
           นักศึกษาชั้นปีที่ 4 สาขา<strong>วิทยาการคอมพิวเตอร์</strong> มหาวิทยาลัยกรุงเทพ เกรดเฉลี่ยสะสม
-          <strong>3.54</strong> มุ่งเน้นด้านความมั่นคงปลอดภัยไซเบอร์และวิทยาการข้อมูล มีประสบการณ์จากการลงมือทำจริง
-          ทั้งการเฝ้าระวังความปลอดภัย การวิเคราะห์ Log การ Deploy ระบบบน Cloud และการพัฒนาด้วย Python
-          พร้อมใบรับรอง CRTA และกำลังมองหาโอกาสสหกิจศึกษาในสายงาน <strong>SOC / Blue Team</strong>
+          <strong>3.54</strong> มุ่งเน้นด้านความมั่นคงปลอดภัยไซเบอร์และวิทยาการข้อมูล มีประสบการณ์ตรงจากการลงมือทำจริง
+          ทั้งการเฝ้าระวังความปลอดภัย การวิเคราะห์ Log การ Deploy ระบบบน Cloud และการพัฒนาด้วย Python ผ่านการรับรอง
+          CRTA และกำลังมองหาโอกาสสหกิจศึกษาในสายงาน <strong>SOC / Blue Team</strong> เพื่อนำทักษะที่มีไปประยุกต์ใช้
+          และพัฒนาต่อยอดร่วมกับทีมงานมืออาชีพ
         </p>
 
         <div class="grid">
@@ -532,16 +592,15 @@
                 </div>
                 <p class="subline">สมาชิกทีมโครงงานด้านความปลอดภัยไซเบอร์ · VSEG Team × SIAM AI Cloud</p>
                 <ul>
-                  <li>ร่วมพัฒนา POC สำหรับวิเคราะห์เหตุการณ์ความปลอดภัยแบบเรียลไทม์ เพื่อตรวจจับพฤติกรรมผิดปกติและช่วยลดเวลาการตรวจสอบของทีม SOC</li>
-                  <li>พัฒนา Workflow สำหรับรับและแยกข้อมูล Log ใช้กฎตรวจจับ และแสดงผลเหตุการณ์ความปลอดภัยผ่าน Wazuh และ Grafana</li>
-                  <li>ศึกษา Pipeline ที่รองรับการขยายระบบด้วย Kafka, NVIDIA Morpheus, H100 GPU และการตรวจจับความผิดปกติด้วย AI</li>
+                  <li>ร่วมพัฒนา POC สำหรับวิเคราะห์เหตุการณ์ความปลอดภัยแบบเรียลไทม์ รับและแยกข้อมูล Log ใช้กฎตรวจจับ และแสดงผลเหตุการณ์ผ่าน Wazuh และ Grafana เพื่อลดเวลาการตรวจสอบของทีม SOC</li>
+                  <li>ศึกษาแนวทางขยายระบบด้วย Kafka, NVIDIA Morpheus และโครงสร้าง H100 GPU สำหรับการตรวจจับความผิดปกติด้วย AI</li>
                 </ul>
               </article>
 
               <article class="project">
                 <div class="project-head">
                   <h2>VSEG Email Platform</h2>
-                  <p class="meta">โครงงานระบบ Cloud</p>
+                  <p class="meta">2025</p>
                 </div>
                 <p class="subline">นักพัฒนาระบบหลังบ้านและ Cloud · โครงงานกลุ่ม</p>
                 <ul>
@@ -553,7 +612,7 @@
               <article class="project">
                 <div class="project-head">
                   <h2>Leo Auto Inventory System</h2>
-                  <p class="meta">โครงงานซอฟต์แวร์</p>
+                  <p class="meta">2026</p>
                 </div>
                 <p class="subline">นักพัฒนา Full-stack · Python / FastAPI / Gemini API</p>
                 <ul>
@@ -565,21 +624,44 @@
 
             <section aria-labelledby="skills-title">
               <div class="section-heading">
-                <span id="skills-title" class="section-label"><span class="section-number">02</span> / ทักษะทางเทคนิค</span>
+                <span id="skills-title" class="section-label"><span class="section-number">02</span> / ทักษะ</span>
                 <span class="section-rule"></span>
               </div>
 
-              <div class="skill-group">
-                <p class="skill-label">ความปลอดภัยและการเฝ้าระวัง</p>
-                <p class="skill-copy">Wazuh · Wireshark · Burp Suite · Kali Linux · Grafana · การเฝ้าระวัง SIEM · การวิเคราะห์ Log</p>
-              </div>
-              <div class="skill-group">
-                <p class="skill-label">การเขียนโปรแกรมและเว็บ</p>
-                <p class="skill-copy">Python · SQL · JavaScript · FastAPI · React · Next.js · HTML5 · CSS3</p>
-              </div>
-              <div class="skill-group">
-                <p class="skill-label">Cloud และ DevOps</p>
-                <p class="skill-copy">Microsoft Azure · Azure SQL Database · Git · GitHub Actions · CI/CD</p>
+              <div class="skills-quad">
+                <div>
+                  <div class="skill-group">
+                    <p class="skill-label">ทักษะหลัก</p>
+                    <p class="skill-copy">การเฝ้าระวังความปลอดภัยและวิเคราะห์ SIEM Log · การประเมินช่องโหว่และทดสอบเจาะระบบ · การวิเคราะห์ทราฟฟิกเครือข่าย · การตรวจจับและรับมือเหตุการณ์ผิดปกติ · พื้นฐานความปลอดภัยบน Cloud · การเขียนสคริปต์ Python เพื่อระบบอัตโนมัติด้านความปลอดภัย</p>
+                  </div>
+                  <div class="skill-group">
+                    <p class="skill-label">ทักษะรอง</p>
+                    <p class="skill-copy">การทำงานเป็นทีมข้ามสายงาน · การคิดวิเคราะห์และคิดเชิงวิพากษ์ · การสื่อสารเชิงเทคนิคอย่างชัดเจน · การบริหารเวลาภายใต้กำหนดเวลา · ความสามารถในการปรับตัวและเรียนรู้เร็ว</p>
+                  </div>
+                </div>
+                <div>
+                  <div class="skill-group">
+                    <p class="skill-label">ทักษะด้านโปรแกรม/ซอฟต์แวร์</p>
+                    <ul class="lvl-list lvl-list-2col">
+                      <li><span>Python</span> <b>Advanced</b></li>
+                      <li><span>Git / GitHub</span> <b>Advanced</b></li>
+                      <li><span>Wazuh (SIEM)</span> <b>Intermediate</b></li>
+                      <li><span>Wireshark</span> <b>Intermediate</b></li>
+                      <li><span>Burp Suite</span> <b>Intermediate</b></li>
+                      <li><span>Kali Linux</span> <b>Intermediate</b></li>
+                      <li><span>Microsoft Azure</span> <b>Intermediate</b></li>
+                      <li><span>Microsoft Office</span> <b>Proficient</b></li>
+                    </ul>
+                  </div>
+                  <div class="skill-group">
+                    <p class="skill-label">ทักษะด้านภาษา</p>
+                    <ul class="lvl-list">
+                      <li><span>ภาษาไทย</span> <b>Native</b></li>
+                      <li><span>ภาษาอังกฤษ (ฟัง)</span> <b>Advanced</b></li>
+                      <li><span>ภาษาอังกฤษ (พูด)</span> <b>Intermediate</b></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -594,7 +676,7 @@
               <div class="education">
                 <div class="education-head">
                   <h3>มหาวิทยาลัยกรุงเทพ</h3>
-                  <p class="meta">2023 — ปัจจุบัน</p>
+                  <p class="meta">2023 — ปัจจุบัน (ปีที่ 4)</p>
                 </div>
                 <p class="degree">วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์<br />คณะเทคโนโลยีสารสนเทศและนวัตกรรม</p>
                 <span class="gpa">เกรดเฉลี่ยสะสม 3.54 / 4.00</span>
@@ -610,36 +692,58 @@
               <div class="cert-list">
                 <div class="cert">
                   <strong>Certified Red Team Analyst (CRTA)</strong>
-                  <span>CyberWarfare Labs · ปี 2026</span>
+                  <span>CyberWarfare Labs · 2026</span>
                 </div>
                 <div class="cert">
                   <strong>Penetration Test Specialist</strong>
-                  <span>สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ · ปี 2026</span>
+                  <span>สำนักงานคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ · 2026</span>
                 </div>
                 <div class="cert">
                   <strong>Ethical Hacker</strong>
-                  <span>NCSA × Cisco Networking Academy · ปี 2026</span>
+                  <span>NCSA × Cisco Networking Academy · 2026</span>
                 </div>
                 <div class="cert">
                   <strong>OCI Generative AI Professional</strong>
                   <span>Oracle University · มีผลถึงปี 2027</span>
+                </div>
+                <div class="cert">
+                  <strong>CompTIA Security+</strong>
+                  <span><b class="status">กำลังเตรียมสอบ</b> — ศึกษาและเตรียมตัวสอบ</span>
                 </div>
               </div>
             </section>
 
             <section aria-labelledby="competitions-title">
               <div class="section-heading">
-                <span id="competitions-title" class="section-label"><span class="section-number">05</span> / การแข่งขัน</span>
+                <span id="competitions-title" class="section-label"><span class="section-number">05</span> / การแข่งขันและกิจกรรม</span>
                 <span class="section-rule"></span>
               </div>
 
-              <div class="achievement">
-                <strong>อันดับทีม 183</strong>
-                <span>Cyber Apocalypse CTF 2026<br />The Salt Crown · 57,700 คะแนน</span>
-              </div>
-              <div class="achievement">
-                <strong>ระดับ Senior</strong>
-                <span>IT RERU Cyber Hackathon 2026 #2 · การแข่งขัน Capture The Flag</span>
+              <div class="cert-list">
+                <div class="achievement">
+                  <span class="comp-title">Meet The Youth: Cyber Guardians &amp; White Hat 2026</span>
+                  <span class="org"><b>ส.ค. 2026</b> · หน่วยบัญชาการไซเบอร์ทหาร · ผู้เข้าร่วม</span>
+                  <p class="comp-detail">กิจกรรมสร้างความตระหนักด้านการป้องกันภัยไซเบอร์และพื้นฐานการแฮกอย่างมีจริยธรรม</p>
+                </div>
+
+                <div class="achievement">
+                  <span class="comp-title">IT RERU Cyber Hackathon 2026 #2</span>
+                  <span class="org"><b>ก.ค. 2026</b> · มหาวิทยาลัยราชภัฏร้อยเอ็ด · ระดับ Senior</span>
+                  <p class="comp-detail">แข่ง CTF หลายหมวด: Web, Crypto, Forensics, Reverse Engineering</p>
+                </div>
+
+                <div class="achievement">
+                  <span class="comp-title">Cyber Apocalypse CTF 2026: The Salt Crown</span>
+                  <span class="org"><b>24–29 ก.ค. 2026</b> · Hack The Box · ทีม BU-iTi CTF</span>
+                  <p class="comp-detail">แก้โจทย์ได้ 89/136 ข้อ (pwn, web, crypto, forensics)</p>
+                  <span class="stat">อันดับ 183 จาก 6,744 ทีม · 57,700 คะแนน</span>
+                </div>
+
+                <div class="achievement">
+                  <span class="comp-title">NCSA x CISCO CTF 2026</span>
+                  <span class="org"><b>มิ.ย. 2026</b> · NCSA × Cisco × THNCA · ผู้เข้าร่วม</span>
+                  <p class="comp-detail">การแข่งขัน CTF ระดับประเทศ ฝึกฝนทักษะ Offensive Security</p>
+                </div>
               </div>
             </section>
           </aside>
@@ -647,7 +751,7 @@
 
         <footer class="footer">
           <span>ความปลอดภัยไม่มีวันเสร็จสิ้น</span>
-          <span>ยินดีให้ข้อมูลอ้างอิงเพิ่มเติม</span>
+          <span>mjsec-portfolio.vercel.app</span>
         </footer>
       </div>
     </main>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type SVGProps } from "react";
 import AboutText from "@/components/AboutText";
 import BibleVerse from "@/components/BibleVerse";
@@ -32,6 +33,143 @@ function ArrowIcon({
     </svg>
   );
 }
+
+function ShieldIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M12 3 4.5 6v5.2c0 4.6 3.2 7.9 7.5 9.3 4.3-1.4 7.5-4.7 7.5-9.3V6L12 3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+const CERT_PREVIEWS = [
+  "/certs/crta.webp",
+  "/certs/htb.png",
+  "/certs/cert1.webp",
+  "/certs/cert4.webp",
+  "/certs/meettheyouth.webp",
+  "/certs/ncsaxcisco.webp",
+];
+
+const CERT_PREVIEW_INTERVAL_MS = 3000;
+
+function CertPreviewCarousel() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % CERT_PREVIEWS.length);
+    }, CERT_PREVIEW_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <>
+      {CERT_PREVIEWS.map((src, i) => (
+        <Image
+          key={src}
+          src={src}
+          alt="Certificate preview"
+          fill
+          priority
+          loading="eager"
+          sizes="(min-width: 1024px) 22rem, 45vw"
+          className={`object-cover transition-opacity duration-1000 ease-in-out ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+    </>
+  );
+}
+
+function CornerMark() {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 20 20"
+      className="absolute top-4 right-4 h-3.5 w-3.5 text-white/25"
+    >
+      <path
+        d="M1 8V1h7"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SpinBadge() {
+  return (
+    <div className="absolute -right-1.5 -bottom-1.5 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black shadow-[0_8px_24px_rgba(0,0,0,0.55)] sm:h-16 sm:w-16">
+      <svg
+        viewBox="0 0 100 100"
+        className="badge-spin absolute inset-0 h-full w-full text-zinc-400"
+      >
+        <defs>
+          <path
+            id="hero-badge-ring"
+            d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+          />
+        </defs>
+        <text fontSize="7.4" letterSpacing="1.6" fill="currentColor">
+          <textPath href="#hero-badge-ring">
+            CYBERSECURITY • BANGKOK UNIVERSITY •
+          </textPath>
+        </text>
+      </svg>
+      <ShieldIcon className="relative h-4.5 w-4.5 text-red-400" />
+    </div>
+  );
+}
+
+function StatCard({
+  value,
+  label,
+  accent,
+}: {
+  value: string;
+  label: string;
+  accent: "red" | "lime";
+}) {
+  const styles =
+    accent === "lime"
+      ? "border-lime-400/30 bg-lime-400/5"
+      : "border-red-500/30 bg-red-500/[0.05]";
+
+  return (
+    <div
+      className={`relative flex flex-1 flex-col justify-center overflow-hidden rounded-[1.75rem] border px-5 py-4 ${styles}`}
+    >
+      <CornerMark />
+      <p className="font-kanit text-3xl font-bold text-white sm:text-4xl">
+        {value}
+      </p>
+      <p className="mt-1 text-[10px] font-medium tracking-[0.22em] text-zinc-400 uppercase">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+const SIDE_LINKS = [
+  { href: "#skills", label: "Skills" },
+  { href: "#project", label: "Project" },
+  { href: "#activity", label: "Activity" },
+  { href: "#contact", label: "Contact" },
+];
 
 export default function HeroAboutDeck() {
   const [view, setView] = useState<HeroView>("profile");
@@ -88,53 +226,148 @@ export default function HeroAboutDeck() {
         >
           <div
             aria-hidden={view !== "profile"}
-            className={`hero-deck-panel flex min-h-[calc(100vh-12rem)] items-center ${
+            className={`hero-deck-panel flex min-h-[calc(100vh-12rem)] items-center py-10 ${
               view === "profile" ? "is-active" : "is-inactive"
             }`}
           >
-            <div className="grid w-full items-center gap-16 md:grid-cols-2 md:pr-14">
-              <div className="hero-copy flex flex-col gap-10">
-                <div data-enter="1">
-                  <p className="mb-4 text-xs font-medium tracking-[0.4em] text-zinc-500 uppercase">
-                    Portfolio
-                  </p>
-                  <NameHover />
-                </div>
-                <div data-enter="2">
-                  <BibleVerse />
-                </div>
-                <div data-enter="3">
-                  <SocialLinks />
-                </div>
-              </div>
-
-              <div
-                data-enter="4"
-                className="hero-profile flex justify-center md:justify-end"
+            <div className="w-full lg:flex lg:items-stretch lg:gap-8">
+              <nav
+                aria-label="Section shortcuts"
+                className="hidden shrink-0 lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-10"
               >
-                <div className="relative">
+                {SIDE_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="font-mono text-[10px] tracking-[0.3em] text-zinc-600 uppercase transition-colors duration-300 hover:text-white [writing-mode:vertical-rl]"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(8rem,auto)]">
+                {/* About Me */}
+                <div
+                  data-enter="1"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-4xl border border-red-500/25 bg-linear-to-br from-red-500/[0.07] via-black to-black p-6 sm:col-span-2 sm:p-7 lg:col-span-2 lg:row-span-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="flex items-center gap-2 text-[11px] font-medium tracking-[0.3em] text-zinc-400 uppercase">
+                      <span className="text-red-400">◆</span> About Me
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => changeView("about")}
+                      aria-label="Open About Me and Education"
+                      className="group/btn flex shrink-0 items-center gap-1.5 rounded-full border border-white bg-white px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.14em] text-black uppercase shadow-[0_4px_18px_rgba(255,255,255,0.2)] transition-transform duration-300 hover:scale-105"
+                    >
+                      Full Story
+                      <ArrowIcon
+                        direction="right"
+                        className="h-3 w-3 transition-transform duration-300 group-hover/btn:translate-x-0.5"
+                      />
+                    </button>
+                  </div>
+
+                  <div className="my-7 flex justify-center">
+                    <div className="relative">
+                      <div
+                        aria-hidden
+                        className="absolute -inset-3 -z-10 rounded-full bg-red-500/20 blur-2xl"
+                      />
+                      <div className="relative aspect-square w-36 overflow-hidden rounded-full border-2 border-white/15 sm:w-44">
+                        <ProfileCarousel />
+                      </div>
+                      <SpinBadge />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] font-medium tracking-[0.3em] text-zinc-500 uppercase">
+                      I&apos;m,
+                    </p>
+                    <NameHover />
+                    <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                      <SocialLinks />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Portfolio wordmark */}
+                <div
+                  data-enter="2"
+                  className="relative flex flex-col justify-center overflow-hidden rounded-4xl border border-white/10 bg-white/2 px-7 py-8 sm:col-span-2 sm:px-9 lg:col-span-2 lg:row-span-1"
+                >
+                  <CornerMark />
+                  <p className="mb-2 font-mono text-[10px] tracking-[0.35em] text-zinc-600 uppercase">
+                    Cybersecurity · CS Student
+                  </p>
+                  <h2 className="font-kanit text-5xl leading-none font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                    Portfolio<span className="text-red-400">.</span>
+                  </h2>
+                </div>
+
+                {/* Certificates preview */}
+                <a
+                  href="#skills"
+                  data-enter="3"
+                  className="group relative flex min-h-[9.5rem] flex-col justify-end overflow-hidden rounded-4xl border border-white/10 bg-black lg:col-span-1 lg:row-span-1"
+                >
+                  <CertPreviewCarousel />
                   <div
                     aria-hidden
-                    className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-linear-to-br from-white/20 via-transparent to-white/10 blur-2xl"
+                    className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent"
                   />
-                  <div className="relative aspect-square w-64 overflow-hidden rounded-[2rem] border border-white/15 sm:w-80 lg:w-96">
-                    <ProfileCarousel />
+                  <CornerMark />
+                  <div className="relative flex flex-col gap-1 p-5">
+                    <p className="text-[10px] font-medium tracking-[0.22em] text-zinc-300 uppercase">
+                      Certifications
+                    </p>
+                    <p className="font-kanit text-base font-semibold text-white">
+                      10+ Verified Credentials
+                    </p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => changeView("about")}
-                    aria-label="Open About Me"
-                    className="profile-about-rail group absolute top-1/2 left-full z-20 flex h-36 w-11 -translate-y-1/2 flex-col items-center justify-between rounded-r-2xl border border-l-0 border-white/20 bg-white px-2 py-4 text-black shadow-[16px_0_45px_rgba(255,255,255,0.12)] transition-all duration-500 hover:w-13 hover:bg-zinc-200 sm:h-44 sm:w-12"
-                  >
-                    <span className="font-mono text-[8px] tracking-[0.2em] uppercase [writing-mode:vertical-rl]">
-                      About me
-                    </span>
-                    <ArrowIcon
-                      direction="right"
-                      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                    />
-                  </button>
+                </a>
+
+                {/* Stat stack */}
+                <div
+                  data-enter="3"
+                  className="flex flex-col gap-5 lg:col-span-1 lg:row-span-1"
+                >
+                  <StatCard value="10+" label="Certificates" accent="red" />
+                  <StatCard value="04" label="Projects Built" accent="lime" />
                 </div>
+
+                {/* Bible verse */}
+                <div
+                  data-enter="4"
+                  className="relative flex flex-col justify-center overflow-hidden rounded-4xl border border-white/10 bg-white/2 p-6 lg:col-span-1 lg:row-span-1"
+                >
+                  <CornerMark />
+                  <p className="mb-3 text-[10px] font-medium tracking-[0.22em] text-zinc-500 uppercase">
+                    Hover for Thai
+                  </p>
+                  <BibleVerse />
+                </div>
+
+                {/* CTF achievement */}
+                <a
+                  href="#skills"
+                  data-enter="4"
+                  className="group relative flex flex-col justify-center overflow-hidden rounded-4xl border border-lime-400/30 bg-lime-400/5 p-6 transition-colors duration-300 hover:border-lime-300/60 lg:col-span-1 lg:row-span-1"
+                >
+                  <CornerMark />
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-lime-300/80 uppercase">
+                    Hack The Box · CTF
+                  </p>
+                  <p className="font-kanit mt-1 text-3xl font-bold text-white sm:text-4xl">
+                    #183
+                  </p>
+                  <p className="mt-1 text-xs text-zinc-400">
+                    Cyber Apocalypse 2026 — Salt Crown · 57,700 pts
+                  </p>
+                </a>
               </div>
             </div>
           </div>
@@ -181,7 +414,6 @@ export default function HeroAboutDeck() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }

@@ -30,6 +30,7 @@ type Certificate = {
   meta?: string;
   accent?: "red" | "green";
   wide?: boolean;
+  verifyUrl?: string;
 };
 
 const CERTS: Certificate[] = [
@@ -42,6 +43,8 @@ const CERTS: Certificate[] = [
     date: "Jul 26, 2026",
     meta: undefined as string | undefined,
     accent: "red",
+    verifyUrl:
+      "https://labs.cyberwarfare.live/credential/achievement/6a65c9bf8aed14e94c8f5af0",
   },
   {
     image: "/certs/cert1.webp",
@@ -178,7 +181,26 @@ function CertCard({ cert }: { cert: Certificate }) {
     </ImageLightbox>
   );
 
-  if (!cert.accent) return card;
+  const verifyLink = cert.verifyUrl ? (
+    <a
+      href={cert.verifyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="absolute right-4 bottom-4 z-10 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-medium tracking-[0.15em] text-white uppercase backdrop-blur-sm transition-colors duration-300 hover:border-white/50 hover:bg-black/90"
+    >
+      Verify
+    </a>
+  ) : null;
+
+  if (!cert.accent) {
+    if (!verifyLink) return card;
+    return (
+      <div className="relative h-full">
+        {card}
+        {verifyLink}
+      </div>
+    );
+  }
 
   const glowClass =
     cert.accent === "green" ? "bg-lime-400/12" : "bg-red-500/12";
@@ -190,6 +212,7 @@ function CertCard({ cert }: { cert: Certificate }) {
         className={`absolute -inset-1.5 -z-10 rounded-3xl blur-lg ${glowClass}`}
       />
       {card}
+      {verifyLink}
     </div>
   );
 }

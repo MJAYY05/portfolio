@@ -26,6 +26,8 @@ const FILES = [
   "reru1.jpg",
   "reru2.jpg",
   "reru3.jpg",
+  "mty1.jpg",
+  "mty2.jpg",
 ];
 
 function formatBytes(bytes) {
