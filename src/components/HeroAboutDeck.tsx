@@ -351,22 +351,30 @@ export default function HeroAboutDeck() {
                   <BibleVerse />
                 </div>
 
-                {/* CTF achievement */}
+                {/* Certification progress */}
                 <a
                   href="#skills"
                   data-enter="4"
-                  className="group relative flex flex-col justify-center overflow-hidden rounded-4xl border border-lime-400/30 bg-lime-400/5 p-6 transition-colors duration-300 hover:border-lime-300/60 lg:col-span-1 lg:row-span-1"
+                  className="group relative flex flex-col justify-center overflow-hidden rounded-4xl border border-red-500/30 bg-red-500/5 p-6 transition-colors duration-300 hover:border-red-400/60 lg:col-span-1 lg:row-span-1"
                 >
                   <CornerMark />
-                  <p className="text-[10px] font-medium tracking-[0.22em] text-lime-300/80 uppercase">
-                    Hack The Box · CTF
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-red-300/80 uppercase">
+                    CompTIA Security+ · Progress
                   </p>
-                  <p className="font-kanit mt-1 text-3xl font-bold text-white sm:text-4xl">
-                    #183
-                  </p>
-                  <p className="mt-1 text-xs text-zinc-400">
-                    Cyber Apocalypse 2026 — Salt Crown · 57,700 pts
-                  </p>
+                  <div className="mt-2 flex items-baseline justify-between">
+                    <p className="font-kanit text-3xl font-bold text-white sm:text-4xl">
+                      70%
+                    </p>
+                    <p className="text-[10px] tracking-[0.15em] text-zinc-500 uppercase">
+                      Studying
+                    </p>
+                  </div>
+                  <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                    <div
+                      className="h-full rounded-full bg-linear-to-r from-red-500 to-white"
+                      style={{ width: "70%" }}
+                    />
+                  </div>
                 </a>
               </div>
             </div>
