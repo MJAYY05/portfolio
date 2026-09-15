@@ -3,7 +3,6 @@ import { Cinzel, Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
-import MusicPlayer from "@/components/MusicPlayer";
 import MotionExperience from "@/components/MotionExperience";
 import Navbar from "@/components/Navbar";
 import PortfolioHUD from "@/components/PortfolioHUD";
@@ -53,7 +52,6 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <MusicPlayer />
         <BackToTop />
       </body>
     </html>

@@ -123,6 +123,15 @@ const COMPETITION_CERTS: Certificate[] = [
     date: "Aug 23, 2026",
   },
   {
+    image: "/certs/crcert.webp",
+    width: 1121,
+    height: 790,
+    title: "Cyber Hero Chiang Rai CTF",
+    issuer: "National Cyber Security Agency (NCSA) × THNCA",
+    date: "Sep 12, 2026",
+    meta: "Higher Education Level · Certificate of Participation",
+  },
+  {
     image: "/certs/ncsaxcisco.webp",
     width: 1600,
     height: 1131,
