@@ -52,6 +52,7 @@ function ShieldIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 const CERT_PREVIEWS = [
+  "/certs/secplus.webp",
   "/certs/crta.webp",
   "/certs/htb.png",
   "/certs/cert1.webp",
@@ -351,29 +352,26 @@ export default function HeroAboutDeck() {
                   <BibleVerse />
                 </div>
 
-                {/* Certification progress */}
+                {/* Featured certification */}
                 <a
                   href="#skills"
                   data-enter="4"
-                  className="group relative flex flex-col justify-center overflow-hidden rounded-4xl border border-red-500/30 bg-red-500/5 p-6 transition-colors duration-300 hover:border-red-400/60 lg:col-span-1 lg:row-span-1"
+                  className="group relative flex flex-col justify-center overflow-hidden rounded-4xl border border-red-500/60 bg-linear-to-r from-red-600/30 via-red-500/10 to-white/[0.08] p-6 backdrop-blur-sm transition-colors duration-300 hover:border-red-500/90 lg:col-span-1 lg:row-span-1"
                 >
                   <CornerMark />
-                  <p className="text-[10px] font-medium tracking-[0.22em] text-red-300/80 uppercase">
-                    CompTIA Security+ · Progress
+                  <p className="text-[10px] font-medium tracking-[0.22em] text-red-400 uppercase">
+                    Featured · Certified
                   </p>
-                  <div className="mt-2 flex items-baseline justify-between">
-                    <p className="font-kanit text-3xl font-bold text-white sm:text-4xl">
-                      70%
+                  <p className="font-kanit mt-2 text-2xl font-bold text-white sm:text-3xl">
+                    CompTIA Security+
+                  </p>
+                  <div className="mt-3 flex items-baseline justify-between gap-3 border-t border-white/10 pt-3">
+                    <p className="text-[10px] tracking-[0.15em] text-zinc-400 uppercase">
+                      SY0-701
                     </p>
                     <p className="text-[10px] tracking-[0.15em] text-zinc-500 uppercase">
-                      Studying
+                      Oct 2026
                     </p>
-                  </div>
-                  <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className="h-full rounded-full bg-linear-to-r from-red-500 to-white"
-                      style={{ width: "70%" }}
-                    />
                   </div>
                 </a>
               </div>

@@ -28,12 +28,24 @@ type Certificate = {
   issuer: string;
   date: string;
   meta?: string;
-  accent?: "red" | "green";
+  accent?: "red" | "green" | "light";
   wide?: boolean;
   verifyUrl?: string;
 };
 
 const CERTS: Certificate[] = [
+  {
+    image: "/certs/secplus.webp",
+    width: 1600,
+    height: 1236,
+    title: "CompTIA Security+ ce (SY0-701)",
+    issuer: "CompTIA",
+    date: "Oct 25, 2026",
+    meta: "Valid until Oct 25, 2029",
+    accent: "light",
+    verifyUrl:
+      "https://www.credly.com/earner/earned/badge/941ca573-0902-48f2-ab1b-5c9dba3fdd6f",
+  },
   {
     image: "/certs/crta.webp",
     width: 1600,
@@ -144,9 +156,11 @@ const COMPETITION_CERTS: Certificate[] = [
 
 function CertCard({ cert }: { cert: Certificate }) {
   const highlightedCardClass =
-    cert.accent === "green"
-      ? "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-lime-400/40 bg-lime-400/[0.03] text-left transition-colors duration-300 hover:border-lime-300/70"
-      : "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-red-500/40 bg-red-500/[0.03] text-left transition-colors duration-300 hover:border-red-400/70";
+    cert.accent === "light"
+      ? "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-red-500/60 bg-linear-to-r from-red-600/30 via-red-500/10 to-white/[0.08] text-left backdrop-blur-sm transition-colors duration-300 hover:border-red-500/90"
+      : cert.accent === "green"
+        ? "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-lime-400/40 bg-lime-400/[0.03] text-left transition-colors duration-300 hover:border-lime-300/70"
+        : "group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-red-500/40 bg-red-500/[0.03] text-left transition-colors duration-300 hover:border-red-400/70";
 
   const card = (
     <ImageLightbox
@@ -195,7 +209,7 @@ function CertCard({ cert }: { cert: Certificate }) {
       href={cert.verifyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="absolute right-4 bottom-4 z-10 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-medium tracking-[0.15em] text-white uppercase backdrop-blur-sm transition-colors duration-300 hover:border-white/50 hover:bg-black/90"
+      className="absolute top-4 left-4 z-10 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-medium tracking-[0.15em] text-white uppercase backdrop-blur-sm transition-colors duration-300 hover:border-white/50 hover:bg-black/90"
     >
       Verify
     </a>
@@ -212,7 +226,11 @@ function CertCard({ cert }: { cert: Certificate }) {
   }
 
   const glowClass =
-    cert.accent === "green" ? "bg-lime-400/12" : "bg-red-500/12";
+    cert.accent === "light"
+      ? "bg-red-500/15"
+      : cert.accent === "green"
+        ? "bg-lime-400/12"
+        : "bg-red-500/12";
 
   return (
     <div className="relative h-full">
