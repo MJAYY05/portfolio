@@ -72,16 +72,16 @@ function FlagIcon(props: SVGProps<SVGSVGElement>) {
 
 const SKILLS = [
   {
-    icon: TargetIcon,
-    title: "Red Team / Pentest",
-    en: "Simulating real-world attacks to uncover vulnerabilities before adversaries do — reconnaissance, exploitation, and clear reporting.",
-    th: "จำลองการโจมตีแบบผู้ไม่หวังดีเพื่อค้นหาช่องโหว่ก่อนถูกใช้จริง ตั้งแต่การสอดแนม เจาะระบบ ไปจนถึงการเขียนรายงานผล",
-  },
-  {
     icon: ShieldIcon,
     title: "Blue Team",
     en: "Monitoring, detecting, and responding to security incidents — log analysis, SIEM, and threat hunting to keep systems safe.",
     th: "เฝ้าระวัง ตรวจจับ และรับมือกับเหตุการณ์ด้านความปลอดภัย วิเคราะห์ log ใช้งาน SIEM และตามล่าภัยคุกคามเพื่อปกป้องระบบ",
+  },
+  {
+    icon: TargetIcon,
+    title: "Red Team / Pentest",
+    en: "Simulating real-world attacks to uncover vulnerabilities before adversaries do — reconnaissance, exploitation, and clear reporting.",
+    th: "จำลองการโจมตีแบบผู้ไม่หวังดีเพื่อค้นหาช่องโหว่ก่อนถูกใช้จริง ตั้งแต่การสอดแนม เจาะระบบ ไปจนถึงการเขียนรายงานผล",
   },
   {
     icon: CodeIcon,

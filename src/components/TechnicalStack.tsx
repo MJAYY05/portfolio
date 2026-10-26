@@ -27,7 +27,6 @@ const STACK_GROUPS = [
       "GitHub Actions",
       "Microsoft Azure",
       "Wazuh",
-      "Grafana",
       "Google Gemini API",
       "ESP32 / IoT",
       "Blynk IoT",

@@ -130,7 +130,7 @@ const PROJECTS = [
         th: "อาจารย์ที่ปรึกษา: ขวัญฤทัย กุลกิจเจริญ — ทีม: ธนกร จำนงประโคน, นวคุณ พรมโลก, ภูวดล ผิวขางกูล, ตรัณภพ นาจรูญ, ละอองทิพย์ พ่อครวงศ์",
       },
     ],
-    stack: ["NVIDIA Morpheus", "NVIDIA H100", "Python", "Wazuh", "Grafana", "Kafka"],
+    stack: ["NVIDIA Morpheus", "NVIDIA H100", "Python", "Wazuh", "Kafka"],
     github: null as string | null,
     youtube: null as string | null,
   },
