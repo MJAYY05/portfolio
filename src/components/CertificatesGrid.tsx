@@ -31,6 +31,7 @@ type Certificate = {
   accent?: "red" | "green" | "light";
   wide?: boolean;
   verifyUrl?: string;
+  hidden?: boolean;
 };
 
 const CERTS: Certificate[] = [
@@ -84,6 +85,7 @@ const CERTS: Certificate[] = [
     issuer: "AWS Academy Graduate",
     date: "May 12, 2026",
     meta: "12 hours",
+    hidden: true,
   },
   {
     image: "/certs/cert4.webp",
@@ -248,7 +250,7 @@ export default function CertificatesGrid() {
   return (
     <div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {CERTS.map((cert) => (
+        {CERTS.filter((cert) => !cert.hidden).map((cert) => (
           <CertCard key={cert.image} cert={cert} />
         ))}
       </div>
